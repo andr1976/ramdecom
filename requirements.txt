@@ -1,0 +1,4 @@
+CoolProp>=6.4.1
+setuptools
+pytest
+pywin32
