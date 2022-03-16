@@ -1,9 +1,61 @@
 import math
+from black import InvalidInput
 import numpy as np
 from tqdm import tqdm
 from matplotlib import pyplot as plt
 from CoolProp.CoolProp import PropsSI
 import CoolProp.CoolProp as CP
+
+from cerberus import Validator
+from cerberus.errors import ValidationError 
+
+def validate_mandatory_ruleset(input):
+    """
+    Validate input file using cerberus
+    
+    Parameters
+    ----------
+    input : dict 
+        Structure holding input 
+    
+    Return
+    ----------
+    retval : bool 
+        True for success, False for failure
+    """
+    
+    schema_general = {
+        'temperature': {
+            'required' : True,
+            'type': 'number',
+            },
+        'pressure': {
+            'required' : True,
+            'type': 'number',
+        },
+        'eos': {
+            'required' : True,
+            'type': 'string',
+            'allowed': ['HEOS', 'REFPROP']
+        },
+        'fluid': {
+            'required' : True,
+            'type': 'string',
+        },
+        'refprop_option': {
+            'required' : False,
+            'type': 'string',
+            'allowed' : ['GERG','PR']
+        },
+    }
+
+    v = Validator(schema_general)
+    retval = v.validate(input)
+    if v.errors:
+        print(v.errors)
+    
+    return retval
+
 
 class WaveSpeed:
     """
@@ -24,7 +76,9 @@ class WaveSpeed:
         self.initialize()
         
     def validate_input(self):
-        pass
+        if validate_mandatory_ruleset(self.input) == False:
+            raise InvalidInput
+        
 
     def read_input(self):
         self.P_step = 1e5
