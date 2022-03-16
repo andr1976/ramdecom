@@ -106,6 +106,12 @@ class WaveSpeed:
             #S_mass = PropsSI('Smass', 'P', P_new, 'T', T_new, self.fluid_string)
             H_mass = PropsSI('Hmass', 'P', P_new, 'S', self.S0, self.fluid_string)
             Q = PropsSI('Q', 'P', P_new, 'S', self.S0, self.fluid_string)
+            
+            if Q < 0: 
+                Q = 0 
+            elif Q > 1: 
+                Q = 1
+
             D_mass = PropsSI('Dmass', 'P', P_new, 'S', self.S0, self.fluid_string)
             
             C = self.speed_of_sound(self.S0, P_new)
