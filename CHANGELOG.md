@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## Changed
 
 ## Added
-- Added inout file schem validation (RAMDECOM!1303)
+- Added input file schem validation (624b1e76)
 
 ## Fixed
 
