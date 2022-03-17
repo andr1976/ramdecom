@@ -50,17 +50,20 @@ def validate_mandatory_ruleset(input):
     retval = v.validate(input)
     if v.errors:
         print(v.errors)
-    
+
     return retval
+
 
 class InputError(Exception):
     """Base class for exceptions in this module."""
     pass
 
+
 class WaveSpeed:
     """
     Main class to to hold problem definition, running problem, storing results, plotting etc.
     """
+
     def __init__(self, input):
         """
         Parameters
@@ -76,11 +79,18 @@ class WaveSpeed:
         self.initialize()
         
     def validate_input(self):
-        if validate_mandatory_ruleset(self.input) == False:
+        """
+        Validating the dictionary provided as input with cerberus according to the defined schema
+        """
+        if validate_mandatory_ruleset(self.input) is False:
             raise InputError("Input file error")
         
 
     def read_input(self):
+        """
+        Reading in the provided input dict and storing in class 
+        attributes. 
+        """
         self.P_step = 1e5
         self.T0 = self.input['temperature']
         self.P0 = self.input['pressure']
@@ -111,6 +121,10 @@ class WaveSpeed:
     
 
     def initialize(self):
+        """
+        Setting inital entropy for the isentrope, and preparing lists 
+        for storing results. 
+        """
         self.S0 = PropsSI('Smass', 'P', self.P0, 'T', self.T0, self.fluid_string)
         self.asfluid = CP.AbstractState(self.eos, self.comp)
         self.asfluid.set_mole_fractions(self.molefracs)
@@ -127,6 +141,32 @@ class WaveSpeed:
 
 
     def speed_of_sound(self, Smass, P1):
+        """
+        Generic calculation of the fluid speed of sound using 
+        a finite difference approximation to the expression
+        at constant entropy: 
+
+        C = (d_P/d_rho)^0.5 
+          = ((P1-P2)/(rho1-rho2))^0.5
+
+        A default difference between P1 and P2 of 100 Pa is used.
+        Rho is evalated isentropically at the corresponding pressure
+        and provided entropy. 
+
+        Parameters
+        ----------
+        Smass: float
+            Mass specific entropy of the fluid 
+        P1: float
+            The pressure at the isentrope at which the speed of sound 
+            shall be calculated
+            
+        Return
+        ----------
+        retval : float 
+            Speed of sound    
+        """
+        
         rho1 = PropsSI('Dmass', 'S', Smass, 'P', P1, self.fluid_string)
         P2=P1+self.del_P
         rho2 = PropsSI('Dmass', 'S', Smass,'P',P2, self.fluid_string)
@@ -135,7 +175,15 @@ class WaveSpeed:
     def get_dataframe(self):
         pass
 
-    def plot(self):
+    def plot_envelope(self,t_min=250):
+        """
+        Convenience function to provide easy plotting of the 
+        isentropic path in the phase diagram / PT-envelope. 
+        Checking is made if fluid is single component, then the saturation 
+        curve from triple to critical point is calculated, else for mixture 
+        the phase envelope is calculated. 
+        """
+
         if self.single_component:
             pc = self.asfluid.keyed_output(CP.iP_critical)
             Tc = self.asfluid.keyed_output(CP.iT_critical)
@@ -145,17 +193,43 @@ class WaveSpeed:
             Ts = np.linspace(Tt, Tc, 100)
             ps = CP.PropsSI('P','T',Ts,'Q',0,self.fluid_string)
 
-            plt.plot(Ts,ps)
-            plt.plot(self.T,self.P)
-            plt.show()
+            plt.plot(Ts,ps,color='dimgrey', label='Saturation line')
+            plt.plot(self.T,self.P,'k--', label='Isentropic path')
+            plt.plot(Tc,pc,'ko', label='Critical point')
+            plt.plot(Tt,pt, linestyle='none', marker='o', color = 'black', fillstyle='none', label='Triple point')
+            plt.plot(self.T0,self.P0, linestyle='none', marker='o', color='k',  fillstyle='right', label='Initial state')
         else:
             self.asfluid.build_phase_envelope("")
             PE = self.asfluid.get_phase_envelope_data()
-            plt.plot(PE.T,PE.p)
-            plt.plot(self.T,self.P)
-            plt.show()
+            plt.plot(PE.T,PE.p,'k--',label='Phase envelope')
+            plt.plot(self.T,self.P,'k',label='Isentropic path')
+            t_max = max(self.T0, 310) + 10.
+            plt.xlim(t_min,t_max)
+
+        plt.xlabel('Temperature (K)')
+        plt.ylabel('Pressure (Pa)')
+        plt.legend(loc='best')
+        plt.show()
+
+    def plot_decom(self):
+        """
+        Convenience function to provide easy plotting of the 
+        pressure vs decompression wave speed. 
+        """
+        plt.plot(self.W,self.P,'k--',label="Calculated")
+        plt.legend(loc='best')
+        plt.xlabel("Decompression wave speed (m/s)")
+        plt.ylabel("Pressure (Pa)")
+        plt.show()
 
     def run(self,disable_pbar=False):
+        """
+        Main function to run through the isentropic path from initial P,T
+        and stepping down in P along the isentrope. For each pressure step
+        the speed of sound, the maximum velocity and resulting decompression 
+        speed, W, is calculated until teh stopping criterium is met, which is either 
+        P < 1e5 Pa or W < 0.
+        """
         for i in range(self.max_step):
             if i == 0:
                 Tguess = self.T0
@@ -199,14 +273,14 @@ class WaveSpeed:
 
 if __name__ == '__main__':
     input = {}
-    input['temperature'] = 273.15+40
-    input['pressure'] = 104.e5
+    input['temperature'] = 273.15+35.09
+    input['pressure'] = 145.61e5
     input['eos'] = 'REFPROP'
-    input['fluid'] = 'CO2'
+    input['fluid'] = 'CO2[0.9667]&O2[0.0333]'
     ws = WaveSpeed(input)
     ws.run()
 
-    data=np.loadtxt(r"..\validation\Munkejord_test_6.txt",delimiter='\t')
+    data=np.loadtxt(r"..\validation\Botros_Test_4.txt",delimiter='\t')
     
     plt.plot(ws.W,ws.P,'k--',label="Calculated")
     plt.plot(data[:,0],data[:,1]*1e5,'ko',label="Experimental")
