@@ -1,13 +1,10 @@
 import math
-from black import InvalidInput
 import numpy as np
-from tqdm import tqdm
 from matplotlib import pyplot as plt
-from CoolProp.CoolProp import PropsSI
-import CoolProp.CoolProp as CP
-
 from cerberus import Validator
 from cerberus.errors import ValidationError 
+from CoolProp.CoolProp import PropsSI
+import CoolProp.CoolProp as CP
 
 def validate_mandatory_ruleset(input):
     """
@@ -56,6 +53,9 @@ def validate_mandatory_ruleset(input):
     
     return retval
 
+class InputError(Exception):
+    """Base class for exceptions in this module."""
+    pass
 
 class WaveSpeed:
     """
@@ -77,7 +77,7 @@ class WaveSpeed:
         
     def validate_input(self):
         if validate_mandatory_ruleset(self.input) == False:
-            raise InvalidInput
+            raise InputError("Input file error")
         
 
     def read_input(self):
@@ -103,6 +103,13 @@ class WaveSpeed:
             self.comp = self.input["fluid"]
             self.molefracs = [1.0]
         
+        # if eos == 'REFPROP' and 'refprop_option' in self.input:
+        #   if self.input['refprop_options']='GERG'
+        #       CP.set_config_bool(CP.REFPROP_USE_GERG,True)
+        #   elif self.input['refprop_options']='PR':
+        #       CP.set_config_bool(CP.REFPROP_USE_PENGROBINSON,True)
+    
+
     def initialize(self):
         self.S0 = PropsSI('Smass', 'P', self.P0, 'T', self.T0, self.fluid_string)
         self.asfluid = CP.AbstractState(self.eos, self.comp)
@@ -148,7 +155,7 @@ class WaveSpeed:
             plt.plot(self.T,self.P)
             plt.show()
 
-    def run(self,disable_pbar=True):
+    def run(self,disable_pbar=False):
         for i in range(self.max_step):
             if i == 0:
                 Tguess = self.T0
@@ -192,8 +199,6 @@ class WaveSpeed:
 
 if __name__ == '__main__':
     input = {}
-    #CP.set_config_bool(CP.REFPROP_USE_GERG,True)
-    #CP.set_config_bool(CP.REFPROP_USE_PENGROBINSON,True)
     input['temperature'] = 273.15+40
     input['pressure'] = 104.e5
     input['eos'] = 'REFPROP'
@@ -201,7 +206,7 @@ if __name__ == '__main__':
     ws = WaveSpeed(input)
     ws.run()
 
-    data=np.loadtxt(r"\\ramoil.ramboll-group.global.network\Common\GlobalProjects\2015\1100019239\P-Process\CCS\CO2\CO2 decompression\Menkejord_test_6.txt",delimiter='\t')
+    data=np.loadtxt(r"..\validation\Munkejord_test_6.txt",delimiter='\t')
     
     plt.plot(ws.W,ws.P,'k--',label="Calculated")
     plt.plot(data[:,0],data[:,1]*1e5,'ko',label="Experimental")
