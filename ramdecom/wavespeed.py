@@ -6,43 +6,44 @@ from cerberus.errors import ValidationError
 from CoolProp.CoolProp import PropsSI
 import CoolProp.CoolProp as CP
 
+
 def validate_mandatory_ruleset(input):
     """
     Validate input file using cerberus
-    
+
     Parameters
     ----------
-    input : dict 
-        Structure holding input 
-    
+    input : dict
+        Structure holding input
+
     Return
     ----------
-    retval : bool 
+    retval : bool
         True for success, False for failure
     """
-    
+
     schema_general = {
         'temperature': {
-            'required' : True,
+            'required': True,
             'type': 'number',
             },
         'pressure': {
-            'required' : True,
+            'required': True,
             'type': 'number',
         },
         'eos': {
-            'required' : True,
+            'required': True,
             'type': 'string',
             'allowed': ['HEOS', 'REFPROP']
         },
         'fluid': {
-            'required' : True,
+            'required': True,
             'type': 'string',
         },
         'refprop_option': {
-            'required' : False,
+            'required': False,
             'type': 'string',
-            'allowed' : ['GERG','PR']
+            'allowed': ['GERG','PR']
         },
     }
 
