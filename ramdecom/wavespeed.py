@@ -83,7 +83,7 @@ class WaveSpeed:
         Validating the dictionary provided as input with cerberus according to the defined schema
         """
         if validate_mandatory_ruleset(self.input) is False:
-            raise InputError("Input file error")
+            raise ValidationError("Input file error")
         
 
     def read_input(self):
@@ -113,11 +113,11 @@ class WaveSpeed:
             self.comp = self.input["fluid"]
             self.molefracs = [1.0]
         
-        # if eos == 'REFPROP' and 'refprop_option' in self.input:
-        #   if self.input['refprop_options']='GERG'
-        #       CP.set_config_bool(CP.REFPROP_USE_GERG,True)
-        #   elif self.input['refprop_options']='PR':
-        #       CP.set_config_bool(CP.REFPROP_USE_PENGROBINSON,True)
+        if self.eos == 'REFPROP' and 'refprop_option' in self.input:
+            if self.input['refprop_option'] == 'GERG':
+                CP.set_config_bool(CP.REFPROP_USE_GERG,True)
+            elif self.input['refprop_option'] == 'PR':
+                CP.set_config_bool(CP.REFPROP_USE_PENGROBINSON,True)
     
 
     def initialize(self):
@@ -277,6 +277,7 @@ if __name__ == '__main__':
     input['pressure'] = 145.61e5
     input['eos'] = 'REFPROP'
     input['fluid'] = 'CO2[0.9667]&O2[0.0333]'
+    #input['refprop_option']='GERG'
     ws = WaveSpeed(input)
     ws.run()
 
