@@ -2,7 +2,6 @@ import math
 import numpy as np
 from matplotlib import pyplot as plt
 from cerberus import Validator
-from cerberus.errors import ValidationError 
 from CoolProp.CoolProp import PropsSI
 import CoolProp.CoolProp as CP
 
@@ -43,7 +42,7 @@ def validate_mandatory_ruleset(input):
         'refprop_option': {
             'required': False,
             'type': 'string',
-            'allowed': ['GERG','PR']
+            'allowed': ['GERG', 'PR']
         },
     }
 
@@ -78,14 +77,13 @@ class WaveSpeed:
         self.validate_input()
         self.read_input()
         self.initialize()
-        
+
     def validate_input(self):
         """
         Validating the dictionary provided as input with cerberus according to the defined schema
         """
         if validate_mandatory_ruleset(self.input) is False:
             raise InputError("Input file error")
-        
 
     def read_input(self):
         """
@@ -99,9 +97,9 @@ class WaveSpeed:
         self.fluid = self.input['fluid']
         self.fluid_string = self.eos + '::' + self.input['fluid']
         self.max_step = int(self.P0 / self.P_step)
-        
+
         if "&" in self.input["fluid"]:
-            comp_frac_pair = [str.replace("["," ").replace("]","").split(" ") for str in  self.input["fluid"].split("&")] 
+            comp_frac_pair = [str.replace("[", " ").replace("]", "").split(" ") for str in self.input["fluid"].split("&")]
             comp = [pair[0] for pair in comp_frac_pair]
             molefracs = np.asarray([float(pair[1]) for pair in comp_frac_pair])
             molefracs = molefracs / sum(molefracs)
@@ -113,13 +111,13 @@ class WaveSpeed:
         else:
             self.comp = self.input["fluid"]
             self.molefracs = [1.0]
-        
+
         if self.eos == 'REFPROP' and 'refprop_option' in self.input:
             if self.input['refprop_option'] == 'GERG':
-                CP.set_config_bool(CP.REFPROP_USE_GERG,True)
+                CP.set_config_bool(CP.REFPROP_USE_GERG, True)
             elif self.input['refprop_option'] == 'PR':
-                CP.set_config_bool(CP.REFPROP_USE_PENGROBINSON,True)
-    
+                CP.set_config_bool(CP.REFPROP_USE_PENGROBINSON, True)
+
 
     def initialize(self):
         """
@@ -145,14 +143,14 @@ class WaveSpeed:
         """
         Generic calculation of the fluid speed of sound using 
         a finite difference approximation to the expression
-        at constant entropy: 
+        at constant entropy:
 
-        C = (d_P/d_rho)^0.5 
+        C = (d_P/d_rho)^0.5
           = ((P1-P2)/(rho1-rho2))^0.5
 
         A default difference between P1 and P2 of 100 Pa is used.
         Rho is evalated isentropically at the corresponding pressure
-        and provided entropy. 
+        and provided entropy.
 
         Parameters
         ----------
@@ -170,13 +168,13 @@ class WaveSpeed:
         
         rho1 = PropsSI('Dmass', 'S', Smass, 'P', P1, self.fluid_string)
         P2=P1+self.del_P
-        rho2 = PropsSI('Dmass', 'S', Smass,'P',P2, self.fluid_string)
+        rho2 = PropsSI('Dmass', 'S', Smass, 'P', P2, self.fluid_string)
         return math.sqrt((P2-P1)/(rho2-rho1))
 
     def get_dataframe(self):
         pass
 
-    def plot_envelope(self,t_min=250):
+    def plot_envelope(self, t_min=250):
         """
         Convenience function to provide easy plotting of the 
         isentropic path in the phase diagram / PT-envelope. 
@@ -192,20 +190,20 @@ class WaveSpeed:
             pt = self.asfluid.keyed_output(CP.iP_triple)
 
             Ts = np.linspace(Tt, Tc, 100)
-            ps = CP.PropsSI('P','T',Ts,'Q',0,self.fluid_string)
+            ps = CP.PropsSI('P', 'T', Ts, 'Q', 0, self.fluid_string)
 
-            plt.plot(Ts,ps,color='dimgrey', label='Saturation line')
-            plt.plot(self.T,self.P,'k--', label='Isentropic path')
-            plt.plot(Tc,pc,'ko', label='Critical point')
-            plt.plot(Tt,pt, linestyle='none', marker='o', color = 'black', fillstyle='none', label='Triple point')
-            plt.plot(self.T0,self.P0, linestyle='none', marker='o', color='k',  fillstyle='right', label='Initial state')
+            plt.plot(Ts, ps, color='dimgrey', label='Saturation line')
+            plt.plot(self.T, self.P,'k--', label='Isentropic path')
+            plt.plot(Tc, pc, 'ko', label='Critical point')
+            plt.plot(Tt, pt, linestyle='none', marker='o', color='black', fillstyle='none', label='Triple point')
+            plt.plot(self.T0, self.P0, linestyle='none', marker='o', color='k', fillstyle='right', label='Initial state')
         else:
             self.asfluid.build_phase_envelope("")
             PE = self.asfluid.get_phase_envelope_data()
-            plt.plot(PE.T,PE.p,'k--',label='Phase envelope')
-            plt.plot(self.T,self.P,'k',label='Isentropic path')
+            plt.plot(PE.T, PE.p, 'k--', label='Phase envelope')
+            plt.plot(self.T, self.P, 'k', label='Isentropic path')
             t_max = max(self.T0, 310) + 10.
-            plt.xlim(t_min,t_max)
+            plt.xlim(t_min, t_max)
 
         plt.xlabel('Temperature (K)')
         plt.ylabel('Pressure (Pa)')
@@ -217,7 +215,7 @@ class WaveSpeed:
         Convenience function to provide easy plotting of the 
         pressure vs decompression wave speed. 
         """
-        plt.plot(self.W,self.P,'k--',label="Calculated")
+        plt.plot(self.W, self.P, 'k--', label="Calculated")
         plt.legend(loc='best')
         plt.xlabel("Decompression wave speed (m/s)")
         plt.ylabel("Pressure (Pa)")
@@ -238,14 +236,14 @@ class WaveSpeed:
                 Tguess = self.T[-1]
 
             P_new = self.P0-self.P_step*i
-            T_new = PropsSI('T','P',P_new,'S',self.S0,self.fluid_string)
+            T_new = PropsSI('T', 'P', P_new, 'S', self.S0, self.fluid_string)
             #S_mass = PropsSI('Smass', 'P', P_new, 'T', T_new, self.fluid_string)
             H_mass = PropsSI('Hmass', 'P', P_new, 'S', self.S0, self.fluid_string)
             Q = PropsSI('Q', 'P', P_new, 'S', self.S0, self.fluid_string)
             
-            if Q < 0: 
-                Q = 0 
-            elif Q > 1: 
+            if Q < 0:
+                Q = 0
+            elif Q > 1:
                 Q = 1
 
             D_mass = PropsSI('Dmass', 'P', P_new, 'S', self.S0, self.fluid_string)
@@ -284,8 +282,8 @@ if __name__ == '__main__':
 
     data=np.loadtxt(r"..\validation\Botros_Test_4.txt",delimiter='\t')
     
-    plt.plot(ws.W,ws.P,'k--',label="Calculated")
-    plt.plot(data[:,0],data[:,1]*1e5,'ko',label="Experimental")
+    plt.plot(ws.W, ws.P, 'k--', label="Calculated")
+    plt.plot(data[:,0], data[:,1]*1e5, 'ko', label="Experimental")
     plt.legend(loc='best')
     plt.xlabel("Decompression wave speed (m/s)")
     plt.ylabel("Pressure (Pa)")
