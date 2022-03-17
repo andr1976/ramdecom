@@ -83,7 +83,7 @@ class WaveSpeed:
         Validating the dictionary provided as input with cerberus according to the defined schema
         """
         if validate_mandatory_ruleset(self.input) is False:
-            raise ValidationError("Input file error")
+            raise InputError("Input file error")
         
 
     def read_input(self):

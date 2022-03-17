@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## Changed
 
 ## Added
+- Testing via pytest ()
 - Added input file schema validation (624b1e76)
 - Validation data sourced from literature (e1b3395d)
 - First working version for both pure CO2 and mixtures
