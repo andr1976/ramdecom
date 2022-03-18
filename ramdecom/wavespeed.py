@@ -90,7 +90,7 @@ class WaveSpeed:
         Reading in the provided input dict and storing in class 
         attributes. 
         """
-        self.P_step = 1e5
+        self.P_step = 1.0e5
         self.T0 = self.input['temperature']
         self.P0 = self.input['pressure']
         self.eos = self.input['eos']
@@ -257,10 +257,6 @@ class WaveSpeed:
 
             W = C - U
 
-            if P_new < 1e5 or W < 0: 
-                print("Stopping at P (Pa):", P_new, "and wavespeed (m/s):", W)
-                break
-
             self.C.append(C)
             self.P.append(P_new)    
             self.T.append(T_new)
@@ -269,18 +265,29 @@ class WaveSpeed:
             self.U.append(U)
             self.W.append(W)
             self.rho_mass.append(D_mass)
+            
+            if P_new < 10e5: 
+                print("Stopping at P (Pa):", P_new, "and wavespeed (m/s):", W)
+                self.W[-1] = 0
+                self.U[-1] = self.C[-1]
+                break
 
+            if W < 0:     
+                self.W[-1] = 0
+                self.U[-1] = self.C[-1]
+                #break
+            
 if __name__ == '__main__':
     input = {}
-    input['temperature'] = 273.15+35.09
-    input['pressure'] = 145.61e5
+    input['temperature'] = 273.15+36.5
+    input['pressure'] = 340.4e5
     input['eos'] = 'REFPROP'
-    input['fluid'] = 'CO2[0.9667]&O2[0.0333]'
+    input['fluid'] = 'CO2'
     #input['refprop_option']='GERG'
     ws = WaveSpeed(input)
     ws.run()
 
-    data=np.loadtxt(r"..\validation\Botros_Test_4.txt",delimiter='\t')
+    data=np.loadtxt(r"..\validation\Botros_Test_15.txt",delimiter='\t')
     
     plt.plot(ws.W, ws.P, 'k--', label="Calculated")
     plt.plot(data[:,0], data[:,1]*1e5, 'ko', label="Experimental")
