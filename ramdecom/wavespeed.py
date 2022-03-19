@@ -29,6 +29,18 @@ def validate_mandatory_ruleset(input):
         'pressure': {
             'required': True,
             'type': 'number',
+        },                
+        'extrapolate': {
+            'required': False,
+            'type': 'boolean',
+        },
+        'pressure_step': {
+            'required': False,
+            'type': 'number',
+        },
+        'pressure_break': {
+            'required': False,
+            'type': 'number',
         },
         'eos': {
             'required': True,
@@ -72,7 +84,7 @@ class WaveSpeed:
             Dict holding problem definition
         """
         self.input = input
-        self.del_P = 100 
+        self.del_P = 10
         self.single_component = True
         self.validate_input()
         self.read_input()
@@ -91,6 +103,19 @@ class WaveSpeed:
         attributes. 
         """
         self.P_step = 1.0e5
+        if 'pressure_step' in self.input:
+            self.P_step = self.input['pressure_step']
+        else:
+            self.P_step = 1.0e5 
+        if 'pressure_break' in self.input:
+            self.P_break = self.input['pressure_break']
+        else:
+            self.P_break = 1.0e5 
+        if 'extrapolate' in self.input:
+            self.extrapolate = self.input['extrapolate']
+        else:
+            self.extrapolate = False 
+        
         self.T0 = self.input['temperature']
         self.P0 = self.input['pressure']
         self.eos = self.input['eos']
@@ -169,7 +194,13 @@ class WaveSpeed:
         rho1 = PropsSI('Dmass', 'S', Smass, 'P', P1, self.fluid_string)
         P2=P1+self.del_P
         rho2 = PropsSI('Dmass', 'S', Smass, 'P', P2, self.fluid_string)
-        return math.sqrt((P2-P1)/(rho2-rho1))
+        try:
+            retval = math.sqrt((P2-P1)/(rho2-rho1))
+        except:
+            print("P:", P1, "T:", PropsSI('T', 'S', Smass, 'P', P1, self.fluid_string))
+            raise 
+
+        return retval
 
     def get_dataframe(self):
         pass
@@ -257,25 +288,22 @@ class WaveSpeed:
 
             W = C - U
 
-            self.C.append(C)
-            self.P.append(P_new)    
-            self.T.append(T_new)
-            self.Q.append(Q)
-            self.H_mass.append(H_mass)
-            self.U.append(U)
-            self.W.append(W)
-            self.rho_mass.append(D_mass)
-            
-            if P_new < 10e5: 
-                print("Stopping at P (Pa):", P_new, "and wavespeed (m/s):", W)
-                self.W[-1] = 0
-                self.U[-1] = self.C[-1]
-                break
-
-            if W < 0:     
-                self.W[-1] = 0
-                self.U[-1] = self.C[-1]
-                #break
+            if W > 0 and P_new > self.P_break:
+                self.C.append(C)
+                self.P.append(P_new)    
+                self.T.append(T_new)
+                self.Q.append(Q)
+                self.H_mass.append(H_mass)
+                self.U.append(U)
+                self.W.append(W)
+                self.rho_mass.append(D_mass)
+            else:
+                if self.extrapolate:
+                    self.W[-1] = 0
+                    self.U[-1] = self.C[-1]
+                    break
+                else:
+                    break
             
 if __name__ == '__main__':
     input = {}
