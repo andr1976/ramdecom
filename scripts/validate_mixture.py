@@ -9,6 +9,7 @@ input ={}
 input['eos'] = 'REFPROP' 
 #input['refprop_option'] = 'GERG'
 color = ['red','blue','black','green','cyan','grey'] + ['red','blue','black','green','cyan','grey'] 
+
 plt.figure(1)
 for index, row in exp.iterrows():
     if index == 1:

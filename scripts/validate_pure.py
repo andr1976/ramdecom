@@ -9,6 +9,20 @@ input ={}
 input['eos'] = 'HEOS' 
 input['fluid'] = 'CO2'
 color = ['red','blue','black','green','cyan','grey']
+
+for index, row in exp.iterrows():
+    input['pressure'] = row['P (bar)'] * 1e5
+    input['temperature'] = row['T (C)'] + 273.15
+    if index == 3:
+        input['extrapolate'] = True
+    ws = wavespeed.WaveSpeed(input)    
+    ws.run()
+    filename = "..\\validation\\"  + row['File']
+    data = np.loadtxt(filename, delimiter='\t')
+    ws.plot_decom(filename=row['Source']+row['Exp No.']+"_decom.png",data=data)
+    ws.plot_envelope(filename=row['Source']+row['Exp No.']+"_envelope.png")
+
+
 plt.figure(1)
 for index, row in exp.iterrows():
     input['pressure'] = row['P (bar)'] * 1e5
@@ -21,6 +35,7 @@ for index, row in exp.iterrows():
     data = np.loadtxt(filename, delimiter='\t')
     plt.semilogy(ws.W,ws.P,color = color[index], label=row['Source']+row['Exp No.'])
     plt.semilogy(data[:,0],data[:,1]*1e5,'o', color = color[index])
+    
 plt.xlabel("Decompression wavespeed (m/s)")
 plt.ylabel("Presseure (Pa)")
 plt.legend(loc='best')

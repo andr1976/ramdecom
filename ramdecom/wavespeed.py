@@ -205,7 +205,7 @@ class WaveSpeed:
     def get_dataframe(self):
         pass
 
-    def plot_envelope(self, t_min=250):
+    def plot_envelope(self, t_min=250, filename=None):
         """
         Convenience function to provide easy plotting of the 
         isentropic path in the phase diagram / PT-envelope. 
@@ -239,18 +239,29 @@ class WaveSpeed:
         plt.xlabel('Temperature (K)')
         plt.ylabel('Pressure (Pa)')
         plt.legend(loc='best')
-        plt.show()
+        if filename:
+            plt.savefig(filename,dpi=600)
+        else:
+            plt.show()
+        plt.clf()
 
-    def plot_decom(self):
+    def plot_decom(self,data=None, filename=None):
         """
         Convenience function to provide easy plotting of the 
         pressure vs decompression wave speed. 
         """
         plt.plot(self.W, self.P, 'k--', label="Calculated")
+        if type(data) != 'NoneType':
+            plt.plot(data[:,0], data[:,1]*1e5, 'ko', label="Experimental")
+            
         plt.legend(loc='best')
         plt.xlabel("Decompression wave speed (m/s)")
         plt.ylabel("Pressure (Pa)")
-        plt.show()
+        if filename:
+            plt.savefig(filename,dpi=600)
+        else:
+            plt.show()
+        plt.clf()
 
     def run(self,disable_pbar=False):
         """
