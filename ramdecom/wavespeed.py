@@ -290,8 +290,11 @@ class WaveSpeed:
 
             D_mass = PropsSI('Dmass', 'P', P_new, 'S', self.S0, self.fluid_string)
             
-            C = self.speed_of_sound(self.S0, P_new)
-
+            try:
+                C = self.speed_of_sound(self.S0, P_new)
+            except:
+                break
+            
             if i == 0:
                 U = (self.P0 - P_new) / (C * D_mass)
             else:
