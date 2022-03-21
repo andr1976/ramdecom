@@ -1,3 +1,5 @@
+# RAMDECOM Copyright (c) 2022 Anders Andreasen
+
 import math
 import numpy as np
 from matplotlib import pyplot as plt
@@ -251,7 +253,7 @@ class WaveSpeed:
         pressure vs decompression wave speed. 
         """
         plt.plot(self.W, self.P, 'k--', label="Calculated")
-        if type(data) != 'NoneType':
+        if type(data) != type(None):
             plt.plot(data[:,0], data[:,1]*1e5, 'ko', label="Experimental")
             
         plt.legend(loc='best')

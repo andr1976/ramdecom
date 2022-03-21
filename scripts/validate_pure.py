@@ -1,3 +1,5 @@
+# RAMDECOM Copyright (c) 2022 Anders Andreasen
+
 from ramdecom import wavespeed
 from matplotlib import pyplot as plt
 from CoolProp import CoolProp as CP

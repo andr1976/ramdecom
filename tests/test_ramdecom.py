@@ -1,4 +1,7 @@
+# RAMDECOM Copyright (c) 2022 Anders Andreasen
+
 from ramdecom import wavespeed
+import os
 
 def test_pure_run_coolprop():
     input = {}
@@ -12,6 +15,21 @@ def test_pure_run_coolprop():
     assert ws.P[-1] == 3961000.0
     assert ws.rho_mass[-1] == 362.33658068836274
 
+def test_pure_run_coolprop_extended():
+    input = {}
+    input['temperature'] = 273.15+35.09
+    input['pressure'] = 145.61e5
+    input['eos'] = 'HEOS'
+    input['fluid'] = 'CO2'
+    input['extrapolate'] = True
+    input['pressure_break'] = 45e5
+    ws = wavespeed.WaveSpeed(input)
+    ws.run()
+    assert ws.T[-1] == 283.67432227384006
+    assert ws.P[-1] ==  4561000.0
+    assert ws.rho_mass[-1] == 454.99417292135354
+
+
 def test_pure_run_refprop():
     input = {}
     input['temperature'] = 273.15+35.09
@@ -20,6 +38,8 @@ def test_pure_run_refprop():
     input['fluid'] = 'CO2'
     ws = wavespeed.WaveSpeed(input)
     ws.run()
+    ws.plot_decom(filename=os.devnull)
+    ws.plot_envelope(filename=os.devnull)
     assert ws.T[-1] == 278.0666028427595
     assert ws.P[-1] == 3961000.0
     assert ws.rho_mass[-1] == 362.33658073279605
@@ -32,9 +52,28 @@ def test_mixture_run():
     input['fluid'] = 'CO2[0.9667]&O2[0.0333]'
     ws = wavespeed.WaveSpeed(input)
     ws.run()
+    ws.plot_decom(filename=os.devnull)
+    ws.plot_envelope(filename=os.devnull)
     assert ws.T[-1] == 276.5007018160266
     assert ws.P[-1] == 4361000.0
     assert ws.rho_mass[-1] == 329.8561371724617
+
+def test_mixture_run_PR():
+    input = {}
+    input['temperature'] = 273.15+35.09
+    input['pressure'] = 145.61e5
+    input['eos'] = 'REFPROP'
+    input['fluid'] = 'CO2[0.9667]&O2[0.0333]'
+    input['refprop_option'] = 'PR'
+    input['pressure_step'] = 2e5
+    input['extrapolate'] = True
+    ws = wavespeed.WaveSpeed(input)
+    ws.run()
+    ws.plot_decom(filename=os.devnull)
+    ws.plot_envelope(filename=os.devnull)
+    assert ws.T[-1] == 275.3431334865607
+    assert ws.P[-1] ==  4161000.0
+    assert ws.rho_mass[-1] == 323.03722458518354
 
 def test_input_validation():
     input = {}
