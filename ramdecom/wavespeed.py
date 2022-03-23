@@ -2,6 +2,7 @@
 
 import math
 import numpy as np
+import pandas as pd
 from matplotlib import pyplot as plt
 from cerberus import Validator
 from CoolProp.CoolProp import PropsSI
@@ -88,6 +89,7 @@ class WaveSpeed:
         self.input = input
         self.del_P = 10
         self.single_component = True
+        self.isrun = False
         self.validate_input()
         self.read_input()
         self.initialize()
@@ -205,8 +207,25 @@ class WaveSpeed:
         return retval
 
     def get_dataframe(self):
-        pass
-
+        if self.isrun == True:
+            data = {'Pressure (Pa)': self.P, 
+                    'Temperature (K)': self.T,
+                    'Speed of sound (m/s)': self.C,
+                    'Bernouilli velocity (m/s)': self.U,
+                    'Decompression wave speed (m/s)': self.U,
+                    'Fluid density (kg/m3)': self.rho_mass,
+                    'Fluid enthalpy (J/kg)': self.H_mass
+                    }
+            df=pd.DataFrame(data)
+            self.df = df
+            return df
+        else: 
+            return None    
+    
+    def get_result_file(self):
+        if self.isrun:
+            self.get_dataframe().to_csv('decom_result.csv')
+        
     def plot_envelope(self, t_min=250, filename=None):
         """
         Convenience function to provide easy plotting of the 
@@ -295,6 +314,7 @@ class WaveSpeed:
             try:
                 C = self.speed_of_sound(self.S0, P_new)
             except:
+                self.isrun = True
                 break
             
             if i == 0:
@@ -317,9 +337,13 @@ class WaveSpeed:
                 if self.extrapolate:
                     self.W[-1] = 0
                     self.U[-1] = self.C[-1]
+                    self.isrun = True
                     break
                 else:
+                    self.isrun = True
                     break
+            
+            self.isrun = True
             
 if __name__ == '__main__':
     input = {}
