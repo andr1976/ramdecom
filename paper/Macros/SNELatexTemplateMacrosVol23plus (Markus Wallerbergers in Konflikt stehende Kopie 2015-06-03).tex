@@ -1,0 +1,128 @@
+ %% use these commands to change font, fontstyle and fontsize 
+%% \sfdefault ... OpenSans, \rmdefault ... Times Roman, \ttdefault ... Courier
+%\usefont{T1}{\sfdefault}{bx}{n}}
+%\fontsize{5cm}{1em}\selectfont 
+
+%% set standard fonts
+\renewcommand*\rmdefault{ptm}  % standard roman-font
+\renewcommand*\ttdefault{pcr}  % standard type-writer-font
+\renewcommand*\familydefault{\rmdefault} % default-font is roman-font
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% format/layout - parameter:
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+%\setlength{\parskip}{0.05\baselineskip}
+\setlength{\parindent}{5mm}
+
+\geometry{
+     includeall,
+     asymmetric, 
+     bindingoffset=0mm,
+     inner=21mm,
+     outer = 21mm,
+     nomarginpar,
+     top=18.2mm,      
+     headheight=4.3mm,
+     headsep = 9.3mm,
+     bottom=34.2mm, %30.9
+     %height = 247.3mm
+     footskip = 10mm,     
+     columnsep=8mm,      
+}
+
+% resolution
+\pdfpxdimen=1in
+\divide\pdfpxdimen by 600
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% custom color - definition:
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{SNE_DARK_BLUE}{RGB}{23, 54, 93} % used for Title
+\definecolor{SNE_BLUE}{RGB}{30, 72, 124} % used section and subsection headlines, paragraph-headlines, Abstract,..
+\definecolor{SNE_BRIGHT_BLUE}{RGB}{54, 94, 144} % used for header and footer
+\definecolor{SNE_GRAY}{RGB}{77,77,77} % used for box with doi-number
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{page}{\value{startpage}}
+
+\newcounter{ct}
+\newcounter{ct2}
+\newcommand{\addspaces}[1]{%
+  \StrLen{#1}[\abc]
+  \setcounter{ct}{\abc}
+  \stepcounter{ct}
+  \setcounter{ct2}{1}
+  \whiledo{\value{ct} > 1}%
+  {%
+	\StrMid{#1}{\value{ct2}}{\value{ct2}}[\char]%
+	\IfEq{\char}{ }{\hspace{1.7mm}}{\char\hspace{1.5mm}}%
+	\stepcounter{ct2}%
+	\setcounter{ct}{\value{ct}-1}%
+   }
+}
+
+\newlength{\HSpaceLength}
+\newcommand{\HSpaceOfText}[1]{\settowidth{\HSpaceLength}{#1}\hspace{\HSpaceLength}}
+
+\makeatletter
+\def\hlinewd#1{%
+\noalign{\ifnum0=`}\fi\hrule \@height #1 %
+\futurelet\reserved@a\@xhline}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% configure style of headings, capture-text, ...
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\allowdisplaybreaks[4] % page break within align-environment 0...4 priority   
+
+\renewcommand\figurename{\footnotesize\fontsize{8.1pt}{1em}\sf\bfseries Figure} %% Name of figures. Change to "Abbildung" if document is written in German.
+\renewcommand\tablename{\footnotesize\fontsize{8.1pt}{1em}\sf\bfseries Table} % Name of tables. Change to "Tabelle" if document is written in German.
+\renewcommand{\refname}{\sf\bfseries\normalsize References}
+
+\addtokomafont{subsection}{\color{SNE_BLUE}} %\usefont{T1}{\sfdefault}{bx}{n}}}
+\addtokomafont{subsection}{\sf\bfseries}
+\addtokomafont{subsection}{\normalsize}
+\addtokomafont{section}{\sf\bfseries}
+\addtokomafont{section}{\color{SNE_BLUE}}
+\addtokomafont{section}{\Large\fontsize{14.1pt}{1em}\selectfont}
+\addtokomafont{paragraph}{\sf\bfseries}
+\addtokomafont{paragraph}{\color{SNE_BLUE}}
+\addtokomafont{paragraph}{\normalsize}
+\newcommand{\Abstract}[1]{\paragraph{\small\fontsize{8.7pt}{1em}\selectfont\sf\bfseries Abstract.}{\small\fontsize{8.7pt}{1em}\selectfont\sf #1}}
+\addtokomafont{caption}{\sf}
+\addtokomafont{caption}{\setstretch{1.3}}
+\addtokomafont{caption}{\footnotesize\fontsize{8.1pt}{1.2em}\selectfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% title-section - definition:
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\maketitle}{
+\twocolumn[\vspace{-3mm}{\sf
+  {\setstretch{2.36}
+    \begin{center}
+      {\textcolor{SNE_DARK_BLUE}{\bfseries\huge\fontsize{19.3pt}{1em}\selectfont \papertitle}}\\
+      \vspace{-0.4mm}
+      {\large\fontsize{12.2pt}{1em}\selectfont \authors}
+    \end{center}
+  }\vspace{-0.3mm}    
+  {\setstretch{1}
+    {\small\fontsize{9.1pt}{1em}\selectfont \institutes }
+  }}
+  \vspace{7.05mm}
+]
+}
+\setcounter{page}{1}
