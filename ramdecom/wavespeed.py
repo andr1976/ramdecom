@@ -123,8 +123,8 @@ class WaveSpeed:
         self.T0 = self.input['temperature']
         self.P0 = self.input['pressure']
         self.eos = self.input['eos']
-        self.fluid = self.input['fluid']
-        self.fluid_string = self.eos + '::' + self.input['fluid']
+        #self.fluid = self.input['fluid']
+        #self.fluid_string = self.eos + '::' + self.input['fluid']
         self.max_step = int(self.P0 / self.P_step)
 
         if "&" in self.input["fluid"]:
@@ -136,10 +136,15 @@ class WaveSpeed:
             sep = "&"
             self.comp = sep.join(comp)
             self.single_component = False
+            
+            self.fluid = '&'.join([c + '[' + str(x) + ']'  for c,x in zip(self.comp.split('&'), self.molefracs)]) #self.input['fluid']
+            self.fluid_string = self.eos + '::' + self.fluid #self.input['fluid']
         # Normally single component fluid is specified
         else:
             self.comp = self.input["fluid"]
             self.molefracs = [1.0]
+            self.fluid = self.input['fluid']
+            self.fluid_string = self.eos + '::' + self.input['fluid']
 
         if self.eos == 'REFPROP' and 'refprop_option' in self.input:
             if self.input['refprop_option'] == 'GERG':

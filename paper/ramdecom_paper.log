@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.24)  24 MAR 2022 23:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.24)  27 MAR 2022 13:18
 entering extended mode
 **./ramdecom_paper.tex
 (ramdecom_paper.tex
@@ -1289,133 +1289,160 @@ Overfull \hbox (1.2823pt too wide) in alignment at lines 188--188
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./Bilder/SamplePicture.jpg, id=80, 197.41756pt x 90.0966pt>
-File: ./Bilder/SamplePicture.jpg Graphic file (type jpg)
-<use ./Bilder/SamplePicture.jpg>
-Package pdftex.def Info: ./Bilder/SamplePicture.jpg  used on input line 196.
-(pdftex.def)             Requested size: 227.62206pt x 103.8866pt.
-File: ./Bilder/SamplePicture.jpg Graphic file (type jpg)
-<use ./Bilder/SamplePicture.jpg>
-Package pdftex.def Info: ./Bilder/SamplePicture.jpg  used on input line 205.
-(pdftex.def)             Requested size: 478.00632pt x 218.16228pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 212.
+(hyperref)                removing `math shift' on input line 194.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 212.
+(hyperref)                removing `subscript' on input line 194.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 212.
+(hyperref)                removing `math shift' on input line 194.
+
+<./Bilder/pure_envelope.png, id=82, 425.06805pt x 339.669pt>
+File: ./Bilder/pure_envelope.png Graphic file (type png)
+<use ./Bilder/pure_envelope.png>
+Package pdftex.def Info: ./Bilder/pure_envelope.png  used on input line 199.
+(pdftex.def)             Requested size: 227.62206pt x 181.88956pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 204.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 204.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 20
+4.
+("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\t1pcr.fd"
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) [2]
+<./Bilder/pure_combined.png, id=115, 428.44064pt x 339.1872pt>
+File: ./Bilder/pure_combined.png Graphic file (type png)
+<use ./Bilder/pure_combined.png>
+Package pdftex.def Info: ./Bilder/pure_combined.png  used on input line 210.
+(pdftex.def)             Requested size: 227.62206pt x 180.20311pt.
+<./Bilder/pure_0.png, id=116, 425.06805pt x 339.1872pt>
+File: ./Bilder/pure_0.png Graphic file (type png)
+<use ./Bilder/pure_0.png>
+Package pdftex.def Info: ./Bilder/pure_0.png  used on input line 217.
+(pdftex.def)             Requested size: 227.62206pt x 181.63156pt.
+<./Bilder/pure_3.png, id=119, 425.06805pt x 339.1872pt>
+File: ./Bilder/pure_3.png Graphic file (type png)
+<use ./Bilder/pure_3.png>
+Package pdftex.def Info: ./Bilder/pure_3.png  used on input line 224.
+(pdftex.def)             Requested size: 227.62206pt x 181.63156pt.
+
+Underfull \hbox (badness 1253) in paragraph at lines 229--231
+[]\T1/ptm/m/n/10.3 Generally the fol-low-ing ob-ser-va-tions are made:
+ []
+
+[3 <./Bilder/pure_envelope.png> <./Bilder/pure_combined.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 245.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 214.
+(hyperref)                removing `subscript' on input line 245.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 214.
+(hyperref)                removing `math shift' on input line 245.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 214.
-
+<./Bilder/mix_combined.png, id=152, 425.06805pt x 339.1872pt>
+File: ./Bilder/mix_combined.png Graphic file (type png)
+<use ./Bilder/mix_combined.png>
+Package pdftex.def Info: ./Bilder/mix_combined.png  used on input line 250.
+(pdftex.def)             Requested size: 227.62206pt x 181.63156pt.
 (ramdecom_paper.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7116) has occurred while \output is active []
 
- [2 <./Bilder/SamplePicture.jpg>]
-Underfull \hbox (badness 1789) in paragraph at lines 22--26
+ [4 <./Bilder/pure_0.png> <./Bilder/pure_3.png>]
+Underfull \hbox (badness 1789) in paragraph at lines 25--29
 \T1/ptm/m/it/10.3 Green-house Gases: Sci-ence and Tech-nol-ogy\T1/ptm/m/n/10.3 
 ,
  []
 
-[3]
-Underfull \hbox (badness 2961) in paragraph at lines 35--38
+
+Underfull \hbox (badness 2961) in paragraph at lines 38--41
 []\T1/ptm/m/n/10.3 Adeyemi Oke, Haroun Mahgerefteh, Ioan-nis
  []
 
 
-Underfull \hbox (badness 7415) in paragraph at lines 40--45
+Underfull \hbox (badness 7415) in paragraph at lines 43--48
 []\T1/ptm/m/n/10.3 Alhoush Elsha-homi, Cheng Lu, Guil-laume
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 55--60
+Underfull \hbox (badness 1354) in paragraph at lines 58--63
 []\T1/ptm/m/n/10.3 Qihui Hu, Nan Zhang, Yux-ing Li, Wuchang
  []
 
 
-Underfull \hbox (badness 1062) in paragraph at lines 55--60
-\T1/ptm/m/n/10.3 ture pro-cess of the su-per-crit-i-cal co2 pipeline.
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 88--93
+Underfull \hbox (badness 1147) in paragraph at lines 91--96
 []\T1/ptm/m/n/10.3 O. Kunz and W. Wag-ner.  The GERG-2008
  []
 
-
-Underfull \hbox (badness 2237) in paragraph at lines 124--133
+[5 <./Bilder/mix_combined.png>]
+Underfull \hbox (badness 2237) in paragraph at lines 127--136
 \T1/ptm/m/n/10.3 David Cour-na-peau, Eric Wieser, Ju-lian Tay-
  []
 
 
-Underfull \hbox (badness 3302) in paragraph at lines 124--133
+Underfull \hbox (badness 3302) in paragraph at lines 127--136
 \T1/ptm/m/n/10.3 Ar-ray pro-gram-ming with NumPy.  \T1/ptm/m/it/10.3 Na-ture\T1
 /ptm/m/n/10.3 ,
  []
 
-[4]
-Underfull \hbox (badness 1365) in paragraph at lines 142--147
+
+Underfull \hbox (badness 1365) in paragraph at lines 145--150
 []\T1/ptm/m/n/10.3 K. K. Botros, J. Geerligs, B. Roth-well, and
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 149--154
+Underfull \hbox (badness 1365) in paragraph at lines 152--157
 []\T1/ptm/m/n/10.3 K. K. Botros, J. Geerligs, B. Roth-well, and
  []
 
-) [5
-
-]
+) [6]
 
 LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
-(LaTeX3)     232.
+(LaTeX3)     273.
 
 
 LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
-(LaTeX3)     232.
+(LaTeX3)     273.
 
  (ramdecom_paper.aux)
 Package rerunfilecheck Info: File `ramdecom_paper.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 22127 strings out of 479622
- 426994 string characters out of 2873016
- 851534 words of memory out of 3000000
- 38716 multiletter control sequences out of 15000+200000
- 524558 words of font info for 287 fonts, out of 3000000 for 9000
+ 22212 strings out of 479622
+ 428383 string characters out of 2873016
+ 853534 words of memory out of 3000000
+ 38786 multiletter control sequences out of 15000+200000
+ 535781 words of font info for 308 fonts, out of 3000000 for 9000
  1142 hyphenation exceptions out of 8191
- 111i,10n,116p,10642b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}{C:/Users/ANRA/AppDa
-ta/Roaming/MiKTeX/2.9/fonts/enc/dvips/opensans/a_jg4h6q.enc}<C:/Users/ANRA/AppD
-ata/Roaming/MiKTeX/2.9/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><C:/User
-s/ANRA/AppData/Roaming/MiKTeX/2.9/fonts/type1/ascender/opensans/OpenSans-Italic
-.pfb><C:/Users/ANRA/AppData/Roaming/MiKTeX/2.9/fonts/type1/ascender/opensans/Op
-enSans-Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Us
-ers/ANRA/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Users/A
-NRA/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times
-/utmri8a.pfb>
-Output written on ramdecom_paper.pdf (5 pages, 222949 bytes).
+ 111i,10n,116p,10642b,490s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+st, replaced by a fixed one
+
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}{C:/Users/ANRA/AppData
+/Roaming/MiKTeX/2.9/fonts/enc/dvips/opensans/a_jg4h6q.enc}<C:/Users/ANRA/AppDat
+a/Roaming/MiKTeX/2.9/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><C:/Users/
+ANRA/AppData/Roaming/MiKTeX/2.9/fonts/type1/ascender/opensans/OpenSans-Italic.p
+fb><C:/Users/ANRA/AppData/Roaming/MiKTeX/2.9/fonts/type1/ascender/opensans/Open
+Sans-Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/ANRA/AppData/
+Roaming/MiKTeX/2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Users/ANRA/AppData/Roami
+ng/MiKTeX/2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times
+/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ramdecom_paper.pdf (6 pages, 1793359 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 49 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 247 PDF objects out of 1000 (max. 8388607)
+ 54 named destinations out of 1000 (max. 500000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

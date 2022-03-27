@@ -1,5 +1,5 @@
 Exp. No. ;P (bar);T (C);CO2;N2;O2;He;Ar;CO;H2;CH4;Source;File;Fluid
-2;148.28;35.9;94.028;5.82;0.127;0.025;;;;;Botros et al.;Botros_Test_2.txt;CO2[0.94028]&N2[0.0582]&O2[0.00127]&He[0.00025]
+2;148.28;35.9;94.028;5.82;0.127;0.025;;;;;Botros et al.;Botros_Test_2.txt;CO2[0.94028]&N2[0.0582]&O2[0.00127]&He[0.000025]
 4;145.61;35.09;96.67;;3.33;;;;;;Botros et al.;Botros_Test_4.txt;CO2[0.9667]&O2[0.0333]
 7;147.8;36.3;96.5162;;;0.0138;;;;3.47;Botros et al.;Botros_Test_7.txt;CO2[0.965162]&He[0.000138]&Methane[0.0347]
 10B;149.3;35.31;96.77;;;;;;3.23;;Botros et al.;Botros_Test_10B.txt;CO2[0.9677]&H2[0.0323]

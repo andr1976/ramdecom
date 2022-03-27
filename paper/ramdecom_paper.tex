@@ -190,28 +190,69 @@ The experimental test conditions for the pure CO$_2$ experiments are summarised 
 	\label{tbl:mix_exp}
 \end{table*}
 
+\section{Results and discussion}
+\subsection{Pure CO$_2$}
+The experiments for pure CO$_2$ summarised in Table \ref{tbl:pure_exp} have all been simulated using the Span \& Wagner equation of state as provided by CoolProp. The isentropic decompression path for all simulated cases is shown in Figure \ref{fig:pure_envelope}.The path from the inital pressure and temperature in the single phase region to the saturation line. The experimental initial conditions cover both gas, liquid (supercritical), and supercritical fluid. Once the decompression state reaches the saturation line the isentrope follows the saturation line with varying fase split. Calculations have been done with the REFPROP backend as well, and identical results where obtained (not shown).  
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=\columnwidth]{./Bilder/SamplePicture.jpg}
-\caption{Each figure and table caption is put below the figure and
-         typeset like this caption. Compose good, comprehensive captions.}
-\label{fig:fig_1}
+\includegraphics[width=\columnwidth]{./Bilder/pure_envelope.png}
+\caption{Isentropic decompresion path for all simulated cases for pure CO$_2$ shown in the P,T plane along with the saturation curve for pure CO$_2$ from triple point to the critical point. }
+\label{fig:pure_envelope}
 \end{figure}
 
+Decompression wave speed plots are made for all cases and corresponding experimental data has been sourced from \cite{MUNKEJORD2020118560,Botros_pure}. It shall be noted that the experimental points have been read manually with the aid of the ScanIT program from Amsterchem \footnote{\url{https://www.amsterchem.com/scanit.html}}. Some slight inaccuracy during the digitization of data from the original references must be expected and further in some areas the original data was too dense to allow all data points to be extracted. That being said the overall characteristics and the shape of the decompression curves have been retained. 
 
-\begin{figure*}[!ht]
-\centering
-\mbox{\includegraphics[width=\textwidth]{./Bilder/SamplePicture.jpg}}
-\caption{A two-column spanning figure.}
-\label{fig:fig_2}
-\end{figure*} 
+The decompression curves for experiments 6 and 8 from \cite{MUNKEJORD2020118560} and experiments 31 and 32A from \cite{Botros_pure} are grouped in the same plot cf. Figure \ref{fig:pure_combined} whereas experiments 3 from \cite{MUNKEJORD2020118560} and 15 from \cite{Botros_pure} are plotted individually in Figures \ref{fig:pure_3} and \ref{fig:pure_15} , respectively.
+ 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./Bilder/pure_combined.png}
+	\caption{Decompression curves for pure CO$_2$ calculated with the RAMDECOM code and experimental data.}
+	\label{fig:pure_combined}
+\end{figure}
 
-\section{Results and discussion}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./Bilder/pure_0.png}
+	\caption{Decompression curve for pure CO$_2$  calculated with the RAMDECOM code and data for experiment 3 from \cite{MUNKEJORD2020118560}.}
+	\label{fig:pure_3}
+\end{figure}
 
-\subsection{Pure CO$_2$}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./Bilder/pure_3.png}
+	\caption{Decompression curve for pure CO$_2$ calculated with the RAMDECOM code and data for experiment 15 from \cite{Botros_pure}.}
+	\label{fig:pure_15}
+\end{figure}
+
+Generally the following observations are made: First of all, the isentropic decompression path follows a gradual decrease in decompression wave speed as the pressure is reduced. Once the saturation line / two-phase state is reached the decompression wave speed abrubtly drops due to an abrupt drop in the speed of sound, which is seen as a plateau in the pressure.  
+Second, it seems that the described decompression wave speed model matches experiments very well for decompression from a supercritical fluid state and this applies to experiments no. 6 \cite{MUNKEJORD2020118560}, 15 \cite{Botros_pure} and 31 \cite{Botros_pure} as seen from Figure \ref{fig:pure_combined} and \ref{fig:pure_15}. Especially the plateau pressure as described previously, is predicted vary well for these cases. Finally, the cases where the decompression starts in the supercritical liquid state and in the gas state are predicted less accurately. This applies to experiments no. 8 \cite{MUNKEJORD2020118560}, 32A \cite{Botros_pure} cf. Figure \ref{fig:pure_combined} and to some extent experiment no. 3 \cite{MUNKEJORD2020118560} cf. Figure \ref{fig:pure_3}. 
+
+In case of experiment no. 3 in Figure \ref{fig:pure_3} the model predicts a slight pressure plateau  at around 3.5 MPa, which is where the theoretical isentropic path intersects the saturation line. However, the experimental data shows a plateau around 2.8 MPa somewhat lower. Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} demonstrated that the experimental data was reasoanbly described is a single phase isentropic path was followed all the way from the initial pressure to the experimental plateau, also supporting a hypothesis that full equilibrium is not established instantaneously and a significant sub-cooling of the gas phase occurs before the first liquid droplets starts to form.  
+
+Experiments 8 and 32A are very similar and in both cases the discrepancy between the predicted plateau pressure and the experimental data have been rationalised by both Botros \emph{et al.} \cite{Botros_pure} and Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} by a very rapid decompression, since the initial pressure is not far from the saturation pressure, in which equilibrium is not due to delayed nucleation. This leads to a measured plateau below the predicted. In both this case and the one for experiment 3 starting from the gas phase it is evident that any non-equilibrium effects be it delayed nucleation or sub-cooled gas, leads to a conservative result from the simple decompression model. 
+
+% Discuss based on p 16 in Munkejord
+
+%\begin{figure*}[!ht]
+%\centering
+%\mbox{\includegraphics[width=\textwidth]{./Bilder/SamplePicture.jpg}}
+%\caption{A two-column spanning figure.}
+%\label{fig:fig_2}
+%\end{figure*} 
 
 \subsection{CO$_2$ mixtures}
+The calculated decompression curves for the CO$_2$ mixtures in Table \ref{tbl:mix_exp} are shown in Figure \ref{fig:mix_combined} along with the corresponding experimental data from \cite{Botros_mixture}. As seen from the figure experiments no. 4, no. 5, no. 7, and no. 9 are predicted very well by the simple decompression model. The repdictions for these experiments are generally in line with both predictions like the one in the present study using the GERG-2008 \cite{Botros_mixture} equation of state as well as predictions made with GASDECOM \cite{Cosham_GASDECOM}.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./Bilder/mix_combined.png}
+	\caption{Decompression curves for rich CO$_2$ mixtures calculated with the RAMDECOM code and experimental data from \cite{Botros_mixture}.}
+	\label{fig:mix_combined}
+\end{figure}
+
+The main discrepancies between model and experiment are observed for experiment no. 2 and no. 10B, In both cases the simple decompression model under-predicts the plateau pressure. For 10B, which contains a significant amount of hydrogen in a binary mixture, the same model behaviour is observed by Botros \emph{emph} \cite{Botros_mixture}. As observed for the pure CO$_2$ the failure to produce equilibriunm conditions during experiments generally resulted in an over-prediction of the experimentally observed plateau. The fact that the plateau is under-predicted for the H$_2$/CO$_2$ binary mixture could indicate that this is due to a defficiency in the applied equation of state to accurately model the bubble point line in particular. This should be investigated in more detail in future works. 
 
 
 

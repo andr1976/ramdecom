@@ -1,9 +1,10 @@
 \begin{thebibliography}{10}
 
 \bibitem{Cosham_GASDECOM}
-{\em {GASDECOM: Carbon Dioxide and Other Components}}, volume 2010 8th
-  International Pipeline Conference, Volume 2 of {\em International Pipeline
-  Conference}, 09 2010.
+Andrew Cosham, Robert~J. Eiber, and Edward~B. Clark.
+\newblock {GASDECOM: Carbon Dioxide and Other Components}.
+\newblock volume~2 of {\em 2010 8th International Pipeline Conference}, pages
+  777--794, 09 2010.
 
 \bibitem{Lu2012_EPDECOM}
 C.~Lu, G.~Michal, A.~Elshahomi, A.~Godbole, P.~Venton, K.~K. Botros,
@@ -14,9 +15,11 @@ C.~Lu, G.~Michal, A.~Elshahomi, A.~Godbole, P.~Venton, K.~K. Botros,
   IPC}, 3:315--322, 2012.
 
 \bibitem{Cosham_DECOM}
-{\em {The Decompression Behaviour of Carbon Dioxide in the Dense Phase}},
-  volume Volume 3: Materials and Joining of {\em International Pipeline
-  Conference}, 09 2012.
+Andrew Cosham, David~G. Jones, Keith Armstrong, Daniel Allason, and Julian
+  Barnett.
+\newblock {The Decompression Behaviour of Carbon Dioxide in the Dense Phase}.
+\newblock volume 3: Materials and Joining of {\em International Pipeline
+  Conference}, pages 447--464, 09 2012.
 
 \bibitem{Liu_2017}
 Bin Liu, Xiong Liu, Cheng Lu, Ajit Godbole, Guillaume Michal, and Anh~Kiet
@@ -46,15 +49,15 @@ Alhoush Elshahomi, Cheng Lu, Guillaume Michal, Xiong Liu, Ajit Godbole, and
 \bibitem{GU2018237}
 Shuaiwei Gu, Yuxing Li, Lin Teng, Qihui Hu, Datong Zhang, Xiao Ye, Cailin Wang,
   Jinghan Wang, and Stefan Iglauer.
-\newblock A new model for predicting the decompression behavior of co2 mixtures
-  in various phases.
+\newblock A new model for predicting the decompression behavior of {CO}$_2$
+  mixtures in various phases.
 \newblock {\em Process Safety and Environmental Protection}, 120:237--247,
   2018.
 
 \bibitem{Hu2021}
 Qihui Hu, Nan Zhang, Yuxing Li, Wuchang Wang, Jianlu Zhu, and Jiyu Gong.
 \newblock A new model for calculation of arrest toughness in the fracture
-  process of the supercritical co2 pipeline.
+  process of the supercritical {CO}$_2$ pipeline.
 \newblock {\em ACS Omega}, 6(26):16804--16815, 2021.
 \newblock PMID: 34250340.
 
@@ -134,7 +137,7 @@ Charles~R. Harris, K.~Jarrod Millman, St{'{e}}fan~J. van~der Walt, Ralf
 \bibitem{MUNKEJORD2020118560}
 Svend~Tollak Munkejord, Anders Austegard, Han Deng, Morten Hammer, H.G.~Jacob
   Stang, and Sigurd~W. Løvseth.
-\newblock Depressurization of co2 in a pipe: High-resolution pressure and
+\newblock Depressurization of {CO}$_2$ in a pipe: High-resolution pressure and
   temperature data and comparison with model predictions.
 \newblock {\em Energy}, 211:118560, 2020.
 
