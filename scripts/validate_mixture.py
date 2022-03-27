@@ -30,7 +30,6 @@ for index, row in exp.iterrows():
         input['pressure_break'] = 1e5
         if index == 0:
             input['pressure_break'] = 70e5
-
         ws = wavespeed.WaveSpeed(input)    
         ws.run()
         filename = "..\\validation\\"  + row['File']
