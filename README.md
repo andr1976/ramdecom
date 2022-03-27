@@ -1,5 +1,7 @@
 # RAMDECOM
-Calculation routine to calculate the decompression wave speed for pipeline design to ensure adequate pipe tichness and/or Charpy-V hardness so a running fracture can be arrested. The program is mainly targetted for CO2, but any fluid can be modelled. 
+Calculation routine to calculate the decompression wave speed for pipeline design to ensure adequate pipe tichness and/or Charpy-V hardness so a running fracture can be arrested. The program is mainly targetted for CO<sub>2</sub>, but any fluid can be modelled. 
+
+This code is developed by Anders Andreasen and is open source and published under an [MIT license]() . For pure fluids calculations can be made using open source tools only. However, ig calculations shall be made for mixtures a [REFPROP](https://www.nist.gov/srd/refprop) license and installation is required.  
 
 ## Installation
 The code is still under heavy development and official releases and pip/conda packages have not been prepared yet. Installation is done by cloning the code to a local directory and running 
@@ -15,7 +17,7 @@ This way a dynamic link is created in the local site-packages directory. Any cha
 ---
 **NOTE**
 
-This package, or CoolProp to be more precise, runs on python 3.8 and apparently the CoolProp pip package has issues with python 3.9. Maybe compiling from source works, but this has not been tested. Hence, it is highly recommended that python 3.8 is used.
+This package, or CoolProp to be more precise, runs on python 3.8 and apparently the [CoolProp](http://www.coolprop.org/) pip package has issues with python 3.9. Maybe compiling from source works, but this has not been tested. Hence, it is highly recommended that python 3.8 is used.
 
 ---
 
@@ -35,7 +37,7 @@ input['pressure'] = 130e5
 input['temperature'] = 320
 ``` 
 
-The equation of state can either be ```HEOS``` for the CoolProp pure component Helmholtz energy formulation or ```REFPROP```. For mixtures only ```REFPROP``` works. In case ```REFPROP``` is selected additional optional input for specifying either the GERG-2008 or the Peng-Robinson equation of state can be given. The follwoing optional input can also be provided:
+The equation of state can either be ```HEOS``` for the CoolProp pure component Helmholtz energy formulation or [REFPROP](https://www.nist.gov/srd/refprop). For mixtures only ```REFPROP``` works. In case ```REFPROP``` is selected additional optional input for specifying either the [GERG-2008](https://www.thermo.ruhr-uni-bochum.de/thermo/forschung/wagner_GERG.html.de) or the Peng-Robinson equation of state can be given. The follwoing optional input can also be provided:
 
 ```
 input['extrapolate'] = True
