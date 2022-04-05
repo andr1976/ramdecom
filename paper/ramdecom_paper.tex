@@ -48,11 +48,11 @@
 \newcommand{\papertitle}{An open source tool for calculating \\ CO$_2$ pipeline decompression wave speed}
 \newcommand{\shortpapertitle}{Open source decompression waves speed}
 \newcommand{\mainauthors}{~Andreasen~ {\itshape et al.~}} % for header  
-\newcommand{\authors}{Anders Andreasen\textsuperscript{1*}, N. N.\textsuperscript{1}}
+\newcommand{\authors}{Anders Andreasen\textsuperscript{1*}, Leandro-Henrique Sousa\textsuperscript{2}, Geir Agustsson\textsuperscript{2}}
 \newcommand{\institutes}{
      \textsuperscript{1}Ramboll, Energy Transition, Process department, Bavneh{\o}jvej 5,
      {\color{white}\textsuperscript{1}}DK-6700 Esbjerg, Denmark; {\sffamily\itshape \textsuperscript{*}anra@ramboll.com} \\[1mm] 
-     \textsuperscript{2}Bogus Institute of Applied Nonsense, 221B Metaphysics Rd, Voidshire VX04711, United Kingdom
+     \textsuperscript{2} Ramboll, Energy Transition, Pipelines,  Hannemanns All{é} 53, DK-2300 Copenhagen S, Denmark
      }
      
 %% hyphenation exceptions:
@@ -86,7 +86,7 @@
 \Abstract{%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% fill in abstract here:
-This paper describes the calculations required to estimate the pipeline decompression velocity based on a rigorous equation of state for pure CO$_2$ and mixtures with significant impurities.
+This paper describes a simplified calculation method for pipeline decompression wavespeed based on a rigorous equation of state for pure CO$_2$ and mixtures with significant impurities. These calculations are important for the design of pipelines and can be used to estimate the required wall thickness and/or material toughness when combined with the Battelle two curve method, thereby ensuring that a potential running ductile fracture is arrested. The calculations are validated against available literature data and is offered as an open source tool.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 }
 }
@@ -96,9 +96,21 @@ This paper describes the calculations required to estimate the pipeline decompre
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% write paper - content as usual
 \section*{Introduction}
+Increased focus on carbon dioxide emission reduction is bringing to the forefront several required technologies that can support such a scheme. This includes carbon dioxide capture \cite{andreasen_CC} and transport in various forms, such as in trucks, ships and pipelines, that brings the carbon dioxide from source towards disposal / storage or reuse. For certain conditions of volumes and distances, pipelines are an economic method to transport gasses and liquids \cite{Lu2020}, as the oil and gas industry has recognized for decades. Pressurized applications allow for a significant increase in transportable volumes. For carbon dioxide at ambient temperatures, this means that transport in so-called dense phase or super critical state. 
 
-Various tools has been presented in the literature for simple calculations of the decompression wave speed such as GASDECOM \cite{Cosham_GASDECOM}, EPDECOM \cite{Lu2012_EPDECOM} and DECOM \cite{Cosham_DECOM}, which employ the assumption unidimensional isentropic, homogeneous equilibrium and inviscid formulation of the decompression wave without explicitly
-solving the fluid transport equations \cite{Liu_2017}. On the other end of the scale  various 1-D/2-D CFD based tools have also been demonstrated where the mass, momentum, and energy balances are explicitly solved \cite{Xu2014_CFDDECOM,OKE20034591_pipetech_CFD,ELSHAHOMI201520_CFD}. Common to all tools is that some are purely academic and some have been developed into commercial products. However, none of the aforementioned tools are freely available to the public. In that respect, the tool presented in the present paper differentiates itself from these tools: it is open source and freely available for use by the public. 
+Compared to natural gas pipelines a running ductile fracture is of bigger concern for carbon dioxide pipelines. Sometimes the wall thickness dictated by the design pressure is not enough to ensure that a ductile fracture is arrested. In case of a pipeline fracture the fluid decompresses, but when the CO$_2$ reaches saturated conditions the decompression speed drops significantly. In case the decompression speed is lower than the speed of a running fracture, the pipeline itself cannot arrest a running fracture. In order to properly design against a running ductile fracture it is essential to be able to predict the decompression speed.     
+
+By using the Battelle two-curve method (BTCM) \cite{EiberMaxeyW.A.BubenikT.A.AmericanGasAssociation.PipelineResearchCommittee.LinePipeResearchSupervisoryCommittee.1993} the fracture and decompression velocity can be compared by plotting the fracture velocity and decompression velocity as a function of the pressure at the crack tip cf. Fig. \ref{fig:btcm} where the decompression wave speed is calculated for pure CO$_2$. If the fracture velocity exceeds that of the decompression wave speed the fracture will not be arrested by the pipeline material itself. This is illustrated by the red curve illustrating the fracture velocity of a pipeline either with inadequate wall thickness (or toughness). By increasing the wall thickness it can be ensured that the fracture velocity always stays below the decompression velocity and a fracture will be arrested.    
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./Bilder/BTCM.png}
+	\caption{The Battelle two-curve method. The graph has been calculated according to the formulas shown in \cite{Hu2021} but only for illustrative purpose.}
+	\label{fig:btcm}
+\end{figure}
+
+Various tools has been presented in the literature for simple calculations of the decompression wave speed, still following DNV guidelines \cite{dnv}, such as GASDECOM \cite{Cosham_GASDECOM}, EPDECOM \cite{Lu2012_EPDECOM} and DECOM \cite{Cosham_DECOM}, which employ the assumption of unidimensional isentropic, homogeneous equilibrium and inviscid formulation of the decompression wave without explicitly
+solving the fluid transport equations \cite{Liu_2017}. On the other end of the scale  various 1-D/2-D CFD based tools have also been demonstrated where the mass, momentum, and energy balances are explicitly solved \cite{Xu2014_CFDDECOM,OKE20034591_pipetech_CFD,ELSHAHOMI201520_CFD,Fang2019}. Common to all tools is that some are purely academic and some have been developed into commercial products. However, none of the aforementioned tools are freely available to the public. In that respect, the tool presented in the present paper differentiates itself from these tools: it is open source and freely available for use by the public. 
 
 \section{Methods}
 
@@ -148,10 +160,12 @@ The calculations are generally continued until the calculated decompression wave
 
 For all calculations the CoolProp python wrapper is used. When using REFPROP as backend this is done still via the CoolProp wrapper. The CoolProp backend is applied only for pure CO$_2$, since the two-phase mixtures failed to solve in many cases. REFPROP can be specified both for pure CO$_2$ and for mixtures. This work is a continuation of a previous work \cite{Andreasen2021} with the purpose of building useful engineering tools on top of high quality open source software packages. RAMDECOM is developed entirely in python 3 and also relies on other python packages such as pandas \cite{mckinney-proc-scipy-2010}, matplotlib \cite{Hunter:2007}, and numpy \cite{harris2020array}. 
 
-\subsection{Experimental}
-In order to compare the presented decompression model with experimental data various relevant experiments have been sourced from the literature. For decompression of pure CO$_2$ experiments made by Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} and Botros \emph{et al.} \cite{Botros_pure}. For CO$_2$ rich mixtures the experiments from Botros \emph{et al.} \cite{Botros_mixture} has been sourced. 
 
-All the experiments sourced have similar set-up and many things in common. The experiments are performed in a horizontal shock-tube comprised of a number of tubular sections flanged together and equipped with pressure and temperature transducers located along the length of the shock-tube. One end is closed and the other end is equipped with a rupture disc. In order to ensure controllable and uniform temperature the shock-tube is heat traced and insulated. The facilities has mixing and compression units in order to fill the shock tube with the desired mixture and the desired initial pressure. For additional information about experimental methods and facility description and details please refer to the original papers \cite{MUNKEJORD2020118560,Botros_pure}.
+
+\subsection{Experimental}
+In order to compare the presented decompression model with experimental data various relevant experiments have been sourced from the literature. For decompression of pure CO$_2$ experiments made by Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} and Botros \emph{et al.} \cite{Botros_pure}. For CO$_2$ rich mixtures the experiments from Botros \emph{et al.} \cite{Botros_mixture} have been sourced. 
+
+All the experiments sourced have similar set-up and many things in common. The experiments are performed in a horizontal shock-tube comprised of a number of tubular sections flanged together and equipped with pressure and temperature transducers located along the length of the shock-tube. One end is closed and the other end is equipped with a rupture disc. In order to ensure controllable and uniform temperature the shock-tube is heat-traced and insulated. The facilities have mixing and compression units in order to fill the shock tube with the desired mixture and to the desired initial pressure. For additional information about experimental methods and facility description and further details please refer to the original papers \cite{MUNKEJORD2020118560,Botros_pure}.
 
 The experimental test conditions for the pure CO$_2$ experiments are summarised in Table \ref{tbl:pure_exp} and the experimental test conditions for the CO$_2$ rich mixtures are summarised in Table \ref{tbl:mix_exp}.
 
@@ -192,7 +206,7 @@ The experimental test conditions for the pure CO$_2$ experiments are summarised 
 
 \section{Results and discussion}
 \subsection{Pure CO$_2$}
-The experiments for pure CO$_2$ summarised in Table \ref{tbl:pure_exp} have all been simulated using the Span \& Wagner equation of state as provided by CoolProp. The isentropic decompression path for all simulated cases is shown in Figure \ref{fig:pure_envelope}.The path from the inital pressure and temperature in the single phase region to the saturation line. The experimental initial conditions cover both gas, liquid (supercritical), and supercritical fluid. Once the decompression state reaches the saturation line the isentrope follows the saturation line with varying fase split. Calculations have been done with the REFPROP backend as well, and identical results where obtained (not shown).  
+The experiments for pure CO$_2$ summarised in Table \ref{tbl:pure_exp} have all been simulated using the Span \& Wagner equation of state as provided by CoolProp. The isentropic decompression path for all simulated cases is shown in Figure \ref{fig:pure_envelope}.The path is from the inital pressure and temperature in the single phase region to the saturation line. The experimental initial conditions cover both gas, liquid (dense phase / supercritical liquid), and supercritical fluid. Once the decompression state reaches the saturation line, the isentrope follows the saturation line with varying phase split. Calculations have been done with the REFPROP backend as well and identical results were obtained (not shown).  
 
 \begin{figure}[!ht]
 \centering
@@ -226,12 +240,12 @@ The decompression curves for experiments 6 and 8 from \cite{MUNKEJORD2020118560}
 	\label{fig:pure_15}
 \end{figure}
 
-Generally the following observations are made: First of all, the isentropic decompression path follows a gradual decrease in decompression wave speed as the pressure is reduced. Once the saturation line / two-phase state is reached the decompression wave speed abrubtly drops due to an abrupt drop in the speed of sound, which is seen as a plateau in the pressure.  
-Second, it seems that the described decompression wave speed model matches experiments very well for decompression from a supercritical fluid state and this applies to experiments no. 6 \cite{MUNKEJORD2020118560}, 15 \cite{Botros_pure} and 31 \cite{Botros_pure} as seen from Figure \ref{fig:pure_combined} and \ref{fig:pure_15}. Especially the plateau pressure as described previously, is predicted vary well for these cases. Finally, the cases where the decompression starts in the supercritical liquid state and in the gas state are predicted less accurately. This applies to experiments no. 8 \cite{MUNKEJORD2020118560}, 32A \cite{Botros_pure} cf. Figure \ref{fig:pure_combined} and to some extent experiment no. 3 \cite{MUNKEJORD2020118560} cf. Figure \ref{fig:pure_3}. 
+Generally, the following observations are made: First of all, the isentropic decompression path follows a gradual decrease in decompression wave speed as the pressure is reduced towards the saturation line. Once the saturation line / two-phase state is reached the decompression wave speed abruptly drops due to an abrupt drop in the speed of sound, which is seen as a plateau in the pressure.  
+Second, it seems that the described decompression wave speed model matches experiments very well for decompression from a supercritical fluid state and this applies to experiments no. 6 \cite{MUNKEJORD2020118560}, 15 \cite{Botros_pure} and 31 \cite{Botros_pure} as seen from Figure \ref{fig:pure_combined} and \ref{fig:pure_15}. Especially, the plateau pressure as described previously, is predicted very well for these cases. Finally, the cases where the decompression starts in the supercritical liquid state and in the gas state are predicted less accurately. This applies to experiments no. 8 \cite{MUNKEJORD2020118560}, 32A \cite{Botros_pure} cf. Figure \ref{fig:pure_combined} and to some extent experiment no. 3 \cite{MUNKEJORD2020118560} cf. Figure \ref{fig:pure_3}. 
 
-In case of experiment no. 3 in Figure \ref{fig:pure_3} the model predicts a slight pressure plateau  at around 3.5 MPa, which is where the theoretical isentropic path intersects the saturation line. However, the experimental data shows a plateau around 2.8 MPa somewhat lower. Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} demonstrated that the experimental data was reasoanbly described is a single phase isentropic path was followed all the way from the initial pressure to the experimental plateau, also supporting a hypothesis that full equilibrium is not established instantaneously and a significant sub-cooling of the gas phase occurs before the first liquid droplets starts to form.  
+In case of experiment no. 3 in Figure \ref{fig:pure_3}, the model predicts a slight pressure plateau  at around 3.5 MPa, which is where the theoretical isentropic path intersects the saturation line. However, the experimental data shows a plateau around 2.8 MPa, somewhat lower. Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} demonstrated that the experimental data was reasonably described as if a single phase isentropic path was followed all the way from the initial pressure to the experimental plateau, also supporting a hypothesis that full equilibrium is not established instantaneously and a significant sub-cooling of the gas phase occurs before the first liquid droplets starts to form.  
 
-Experiments 8 and 32A are very similar and in both cases the discrepancy between the predicted plateau pressure and the experimental data have been rationalised by both Botros \emph{et al.} \cite{Botros_pure} and Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} by a very rapid decompression, since the initial pressure is not far from the saturation pressure, in which equilibrium is not due to delayed nucleation. This leads to a measured plateau below the predicted. In both this case and the one for experiment 3 starting from the gas phase it is evident that any non-equilibrium effects be it delayed nucleation or sub-cooled gas, leads to a conservative result from the simple decompression model. 
+Experiments 8 and 32A are very similar and in both cases the discrepancy between the predicted plateau pressure and the experimental data have been rationalised by both Botros \emph{et al.} \cite{Botros_pure} and Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} by a very rapid decompression, since the initial pressure is not far from the saturation pressure, in which equilibrium is not reached due to delayed nucleation. This leads to a measured plateau below the predicted. In both this case, and the one for experiment 3 starting from the gas phase, it is evident that any non-equilibrium effects be it delayed nucleation or sub-cooled gas, leads to a conservative result from the simple decompression model. 
 
 % Discuss based on p 16 in Munkejord
 
@@ -243,7 +257,7 @@ Experiments 8 and 32A are very similar and in both cases the discrepancy between
 %\end{figure*} 
 
 \subsection{CO$_2$ mixtures}
-The calculated decompression curves for the CO$_2$ mixtures in Table \ref{tbl:mix_exp} are shown in Figure \ref{fig:mix_combined} along with the corresponding experimental data from \cite{Botros_mixture}. As seen from the figure experiments no. 4, no. 5, no. 7, and no. 9 are predicted very well by the simple decompression model. The repdictions for these experiments are generally in line with both predictions like the one in the present study using the GERG-2008 \cite{Botros_mixture} equation of state as well as predictions made with GASDECOM \cite{Cosham_GASDECOM}.
+The calculated decompression curves for the CO$_2$ mixtures in Table \ref{tbl:mix_exp} are shown in Figure \ref{fig:mix_combined} along with the corresponding experimental data from \cite{Botros_mixture}. As seen from the figure experiments no. 4, no. 5, no. 7, and no. 9 are predicted very well by the simple decompression model. The predictions for these experiments are generally in line with both predictions like the one in the present study using the GERG-2008 \cite{Botros_mixture} equation of state as well as predictions made with GASDECOM \cite{Cosham_GASDECOM}.
 
 \begin{figure}[!ht]
 	\centering
@@ -252,15 +266,18 @@ The calculated decompression curves for the CO$_2$ mixtures in Table \ref{tbl:mi
 	\label{fig:mix_combined}
 \end{figure}
 
-The main discrepancies between model and experiment are observed for experiment no. 2 and no. 10B, In both cases the simple decompression model under-predicts the plateau pressure. For 10B, which contains a significant amount of hydrogen in a binary mixture, the same model behaviour is observed by Botros \emph{emph} \cite{Botros_mixture}. As observed for the pure CO$_2$ the failure to produce equilibriunm conditions during experiments generally resulted in an over-prediction of the experimentally observed plateau. The fact that the plateau is under-predicted for the H$_2$/CO$_2$ binary mixture could indicate that this is due to a deficiency in the applied equation of state to accurately model the bubble point line in particular. This should be investigated in more detail in future works. 
+The main discrepancies between model and experiment are observed for experiment no. 2 and no. 10B. In both cases the simple decompression model under-predicts the plateau pressure. For 10B, which contains a significant amount of hydrogen in a binary mixture, the same model behaviour is observed by Botros \emph{emph} \cite{Botros_mixture}. As observed for the pure CO$_2$, the failure to produce equilibrium conditions during experiments generally resulted in an over-prediction of the experimentally observed plateau. The fact that the plateau is under-predicted for the H$_2$/CO$_2$ binary mixture could indicate that this is due to a deficiency in the applied equation of state to accurately model the bubble point line in particular. This should be investigated in more detail in future works. 
 
-The case of experiment no. 2 is is more peculiar. The proposed model would actually be expected to be able to explain the experimental data quite well. Both N$_2$ and O$_2$ are main components in combustion gas which EOS-CG targets \cite{Gernert2016,Herrig2018}. Botros \emph{et al.} found good agreement between both GASDECOM \cite{Cosham_GASDECOM} and a similar model employing the GERG-2008 equation of state \cite{Kunz2012} and data for experiment no.2. In the present study the model using the REFPROP back-end under-predicts the plateau pressure by approx. 5 bar.   
+The case of experiment no. 2 is more peculiar. The proposed model would actually be expected to be able to explain the experimental data quite well. Both N$_2$ and O$_2$ are main components in combustion gas which EOS-CG targets \cite{Gernert2016,Herrig2018}. Botros \emph{et al.} found good agreement between both GASDECOM \cite{Cosham_GASDECOM} and a similar model employing the GERG-2008 equation of state \cite{Kunz2012} and data for experiment no.2. In the present study the model using the REFPROP back-end under-predicts the plateau pressure by approx. 5 bar.   
 
 \section{Conclusion}
+In this paper an open-source tool for calculating the pipeline decompression wavespeed for pure CO$_2$ as well as rich CO$_2$ mixtures containing significant impurities, using a simplified method, is presented. The tool relies on the Span \& Wagner Helmholtz energy equation of state as provided by the open-source tool CoolProp. For mixtures a license for the NIST software REFPROP is required in the present version of the tool. 
+
+The calculations have been compared with available experiments from the literature, generally showing good agreement for most of the investigated cases, both for pure CO$_2$ as well as mixtures. For pure CO$_2$ the comparisons with experiments reveal that for dense phase / super-critical liquid with initial pressures moderately above the critical pressure, there is a tendency for the pressure plateau to be overestimated, apparently due to non-equilibrium effects. The same applies when decompression is made from an initial gas phase below the critical point.  In both cases the inadequacies of the model is to the conservative side when considering fracture behaviour. For CO$_2$ mixtures the majority of the experimental test cases were predicted very accurately, except for the mixture containing hydrogen and for the mixture with highest level of impurities (approx. 6 mole \%). For those two cases the results obtained were non-conservative i.e. the experimental pressure plateau was underestimated. 
+
 
 \Acknowledgement
-Acknowledgements come here.
-
+Language secretary Susanne Tolstrup, Ramboll Energy Transition, Process and Technical Safety, is greatly acknowledged for proofreading the present manuscript.  
 
 
 \bibliographystyle{unsrt}
@@ -268,8 +285,6 @@ Acknowledgements come here.
 
 
 \Appendix
-If there is the need for an appendix, this is the right place for it. Again use an unumbered section 
-for this purpose, as already used for the introduction. 
-
+The code of the calculations described in the present paper is available from the following GitHub repository: \url{https://github.com/andr1976/ramdecom} including all data and scripts used for preparing the results presented. An example application is also available as a streamlit app at \url{https://share.streamlit.io/andr1976/ramdecom/main/scripts/streamlit_app.py}, where decompression speed calculations can be made for pure CO$_2$ at varying initial conditions. The results can plotting and spreadsheet data can be saved locally.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

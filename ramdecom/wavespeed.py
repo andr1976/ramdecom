@@ -217,7 +217,7 @@ class WaveSpeed:
                     'Temperature (K)': self.T,
                     'Speed of sound (m/s)': self.C,
                     'Bernouilli velocity (m/s)': self.U,
-                    'Decompression wave speed (m/s)': self.U,
+                    'Decompression wave speed (m/s)': self.W,
                     'Fluid density (kg/m3)': self.rho_mass,
                     'Fluid enthalpy (J/kg)': self.H_mass
                     }
@@ -227,9 +227,12 @@ class WaveSpeed:
         else: 
             return None    
     
-    def get_result_file(self):
+    def get_result_file(self, filename=None):
         if self.isrun:
-            self.get_dataframe().to_csv('decom_result.csv')
+            if filename:
+                self.get_dataframe().to_csv(filename)
+            else:
+                self.get_dataframe().to_csv('decom_result.csv')
         
     def plot_envelope(self, t_min=250, filename=None):
         """
@@ -352,9 +355,9 @@ class WaveSpeed:
             
 if __name__ == '__main__':
     input = {}
-    input['temperature'] = 273.15+36.5
-    input['pressure'] = 340.4e5
-    input['eos'] = 'REFPROP'
+    input['temperature'] = 273.15+32.
+    input['pressure'] = 120.4e5
+    input['eos'] = 'HEOS'
     input['fluid'] = 'CO2'
     #input['refprop_option']='GERG'
     ws = WaveSpeed(input)
