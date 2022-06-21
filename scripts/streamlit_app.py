@@ -50,13 +50,13 @@ def read_input():
             submit_button = st.form_submit_button(label='Run calculation')
             temp = float(st.text_input('Initial temp. (C):', 25))
             pres = float(st.text_input('Initial pressure (bar):', 150.))
-            c1,c2 = st.beta_columns(2)
+            c1,c2 = st.columns(2)
 
         
             with c2:
                 btc_input['sigma'] = float( st.text_input('Flow stress (MPa):',519))
                 btc_input['E'] = float( st.text_input('Youngs´s modolus (GPa):',210))
-                btc_input['Dt'] = float( st.text_input('Wall thichness (mm):',12))
+                btc_input['Dt'] = float( st.text_input('Wall thickness (mm):',12))
                 btc_input['r'] = float( st.text_input('Nominal radius (mm):',305))
             with c1:
                 btc_input['Mt'] = float( st.text_input('Folias factor (--):',3.33))
@@ -73,7 +73,7 @@ def read_input():
     return input, btc_input
 
 def btc_calc(btc_input, max_pressure):
-    #sigma_a = 2 * btc_input['sigma'] / (btc_input['Mt'] * math.pi *  math.acos(math.exp( (-12.5*math.pi * btc_input['CVN'] * btc_input['E'] * 1000) / ( 24 * btc_input['sigma']**2 * math.sqrt(btc_input['r'] * btc_input['Dt']))))
+    sigma_a = 2 * btc_input['sigma'] / (btc_input['Mt'] * math.pi) * math.acos(math.exp( (-12.5 * math.pi * btc_input['CVN'] * btc_input['E'] * 1000) / ( 24 * btc_input['sigma']**2 * math.sqrt(btc_input['r'] * btc_input['Dt']))))
     return None
 
 
