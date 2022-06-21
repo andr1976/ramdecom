@@ -50,7 +50,7 @@ def read_input():
     input['pressure'] = pres * 1e5
     input['eos'] = 'HEOS'
     input['fluid'] = 'CO2'
-    return input 
+    return input
 
 if __name__ == "__main__":
     st.set_page_config(layout='wide')
