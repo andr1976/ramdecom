@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/505804194.svg)](https://zenodo.org/badge/latestdoi/505804194)
 [![Python application](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml/badge.svg)](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml)
 ![license](https://img.shields.io/github/license/andr1976/ramdecom)
  [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/andr1976/ramdecom/main/scripts/streamlit_app.py)
