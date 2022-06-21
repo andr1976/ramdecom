@@ -33,17 +33,17 @@ def read_input():
     sideb = st.sidebar
 
     with sideb:
-        try:
-            image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "docs", "img", "Sketch.png")
-            icon = Image.open(image_path)
-            st.image(icon, use_column_width=True, caption="HydDown")
-        except:
-            pass
+        #try:
+        #    image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "docs", "img", "Sketch.png")
+        #     icon = Image.open(image_path)
+        #     st.image(icon, use_column_width=True, caption="HydDown")
+        # except:
+        #     pass
 
-        with st.form(key='my_form'):
-            submit_button = st.form_submit_button(label='Run calculation')
-            temp = float(st.text_input('Initial temp. (C):', 25))
-            pres = float(st.text_input('Initial pressure (bar):', 50.))
+        # with st.form(key='my_form'):
+        #     submit_button = st.form_submit_button(label='Run calculation')
+        #     temp = float(st.text_input('Initial temp. (C):', 25))
+        #     pres = float(st.text_input('Initial pressure (bar):', 50.))
 
             
 
