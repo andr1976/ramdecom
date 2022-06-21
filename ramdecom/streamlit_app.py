@@ -6,6 +6,9 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 import base64
+import matplotlib.pyplot as plt 
+from CoolProp import CoolProp as CP
+import numpy as np
 
 try:
     from ramdecom import wavespeed
@@ -43,7 +46,7 @@ def read_input():
         with st.form(key='my_form'):
              submit_button = st.form_submit_button(label='Run calculation')
              temp = float(st.text_input('Initial temp. (C):', 25))
-             pres = float(st.text_input('Initial pressure (bar):', 50.))
+             pres = float(st.text_input('Initial pressure (bar):', 150.))
         
     input = {}
     input['temperature'] = 273.15 + temp
@@ -62,7 +65,7 @@ if __name__ == "__main__":
         ws.run()
 
     st.title('Pure CO2 pipeline decompression wavespeed')
-    st.subheader(r'https://github.com/andr1976/RAMDECOM')
+    st.subheader(r'https://github.com/andr1976/ramdecom')
     my_expander = st.expander("Description")
 
     my_expander.write('Calculation of decompression wavespeed using the CoolProp library. Results to be used in combination with e.g. the Battelle two-curve method.')
@@ -74,21 +77,31 @@ if __name__ == "__main__":
 
     col1, col2 = st.columns(2)
 
-    # if input['valve']['flow'] == 'discharge':
-    #     temp_data = pd.DataFrame({'Time (s)': hdown.time_array, 'Fluid temperature (C)': hdown.T_fluid-273.15, 'Wall temperature (C)': hdown.T_vessel-273.15, 'Vent temperature (C)': hdown.T_vent-273.15})
-    # else:
-    #     temp_data = pd.DataFrame({'Time (s)': hdown.time_array, 'Fluid temperature (C)': hdown.T_fluid-273.15, 'Wall temperature (C)': hdown.T_vessel-273.15})
+    fig, ax = plt.subplots()
 
-    # pres_data = pd.DataFrame({'Time (s)': hdown.time_array, 'Pressure (bar)': hdown.P/1e5})
+    ax.plot(ws.W, ws.P, 'k', label="Calculated")
+    ax.legend(loc='best')
+    ax.set_xlabel("Decompression wave speed (m/s)")
+    ax.set_ylabel("Pressure (Pa)")
+    
+    col1.pyplot(fig)
 
-    # col1.line_chart(pres_data.rename(columns={'Time (s)': 'index'}).set_index('index'))
-    # col1.text('Time (s)')
-    # col2.line_chart(temp_data.rename(columns={'Time (s)': 'index'}).set_index('index'))
-    # col2.text('Time (s)')    
 
-    # mdot_data = pd.DataFrame({'Time (s)': hdown.time_array, 'Mass rate (kg/s)': hdown.mass_rate})
-    # mass_data = pd.DataFrame({'Time (s)': hdown.time_array, 'Fluid inventory (kg)': hdown.mass_fluid})
-    # col1.line_chart(mdot_data.rename(columns={'Time (s)': 'index'}).set_index('index'))
-    # col1.text('Time (s)')
-    # col2.line_chart(mass_data.rename(columns={'Time (s)': 'index'}).set_index('index'))
-    # col2.text('Time (s)')
+    fig1, ax1 = plt.subplots()
+    ax1.plot(ws.T,ws.P,'k',label='Decompression path')
+
+    pc = ws.asfluid.keyed_output(CP.iP_critical)
+    Tc = ws.asfluid.keyed_output(CP.iT_critical)
+    Tt = ws.asfluid.keyed_output(CP.iT_triple)
+    pt = ws.asfluid.keyed_output(CP.iP_triple)
+
+    Ts = np.linspace(Tt, Tc, 100)
+    ps = CP.PropsSI('P', 'T', Ts, 'Q', 0, 'CO2')
+
+    ax1.plot(Ts, ps, '--', color='dimgrey', label='Saturation line')
+    ax1.plot(Tc, pc, 'ko', label='Critical point')
+    ax1.plot(Tt, pt, linestyle='none', marker='o', color='black', fillstyle='none', label='Triple point')
+    ax1.set_xlabel("Temperature ($^\circ$C)")
+    ax1.set_ylabel("Presseure (Pa)")
+    ax1.legend(loc='best')
+    col2.pyplot(fig1)
