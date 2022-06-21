@@ -73,7 +73,7 @@ def read_input():
     return input, btc_input
 
 def btc_calc(btc_input, max_pressure):
-    sigma_a = 2 * btc_input['sigma']/(btc_input['Mt'] * math.pi *  math.acos(math.exp( (-12.5*math.pi * btc_input['CVN'] * btc_input['E'] * 1000) / ( 24 * btc_input['sigma']**2 * math.sqrt(btc_input['r'] * btc_input['Dt']))))
+    #sigma_a = 2 * btc_input['sigma'] / (btc_input['Mt'] * math.pi *  math.acos(math.exp( (-12.5*math.pi * btc_input['CVN'] * btc_input['E'] * 1000) / ( 24 * btc_input['sigma']**2 * math.sqrt(btc_input['r'] * btc_input['Dt']))))
     return None
 
 
