@@ -12,8 +12,8 @@ try:
 except:
     import sys
     import os
-    hyddown_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "ramdecom")
-    sys.path.append(os.path.abspath(hyddown_path))
+    ramdecom_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "ramdecom")
+    sys.path.append(os.path.abspath(ramdecom_path))
     from ramdecom import wavespeed
 
 
@@ -32,7 +32,7 @@ def get_table_download_link(df, filename):
 def read_input():
     sideb = st.sidebar
 
-    #with sideb:
+    with sideb:
         #try:
         #    image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "docs", "img", "Sketch.png")
         #     icon = Image.open(image_path)
@@ -40,10 +40,10 @@ def read_input():
         # except:
         #     pass
 
-        # with st.form(key='my_form'):
-        #     submit_button = st.form_submit_button(label='Run calculation')
-        #     temp = float(st.text_input('Initial temp. (C):', 25))
-        #     pres = float(st.text_input('Initial pressure (bar):', 50.))
+        with st.form(key='my_form'):
+             submit_button = st.form_submit_button(label='Run calculation')
+             temp = float(st.text_input('Initial temp. (C):', 25))
+             pres = float(st.text_input('Initial pressure (bar):', 50.))
         
     input = {}
     input['temperature'] = 273.15 + temp
