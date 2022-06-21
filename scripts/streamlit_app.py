@@ -78,9 +78,12 @@ def btc_calc(btc_input, P_max):
     P_a = sigma_a * btc_input['Dt']/btc_input['r']
     Pd = []
     Vf = []
-    for P in xrange(P_a, P_max, 0.1):
-        Pd.append(P*1e6)
-        Vf.append(input_btc['C'] * input_btc['sigma'] / math.sqrt(input_btc['CV'])*(P/P_a-1)^(1/6))
+    Pd = np.linspace(P_a, P_max, int((P_a - P_max)/0.1))
+    Vf = np.zeros(len(Pd))
+    for i in range(len(Pd)):
+        
+        Vf[i]= input_btc['C'] * input_btc['sigma'] / math.sqrt(input_btc['CV'])*(P / P_a - 1) ** (1./6)
+    
     return Pd, Vf
 
 
@@ -111,7 +114,7 @@ if __name__ == "__main__":
     fig, ax = plt.subplots()
 
     ax.plot(ws.W, ws.P, 'k', label="Decompression speed")
-    ax.plot(Vf, Pd, 'r', label="Fracture speed")
+    ax.plot(Vf, Pd * 1e6, 'k--', label="Fracture speed")
     ax.legend(loc='best')
     ax.set_xlabel("Decompression wave speed (m/s)")
     ax.set_ylabel("Pressure (Pa)")
