@@ -1,3 +1,5 @@
+[![Python application](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml/badge.svg)](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml)
+
 # RAMDECOM
 Calculation routine to calculate the decompression wave speed for pipeline design to ensure adequate pipe tichness and/or Charpy-V hardness so a running fracture can be arrested. The program is mainly targetted for CO<sub>2</sub>, but any fluid can be modelled. 
 
