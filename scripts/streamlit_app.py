@@ -16,7 +16,7 @@ except:
     import sys
     import os
     #ramdecom_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "ramdecom")
-    ramdecom_path = os.path.join(os.getcwd()), "..", "ramdecom")
+    ramdecom_path = os.path.join(os.path.abspath(os.getcwd()), "..", "ramdecom")
     sys.path.append(os.path.abspath(ramdecom_path))
     from ramdecom import wavespeed
 
