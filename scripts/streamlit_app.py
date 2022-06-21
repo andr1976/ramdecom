@@ -51,8 +51,7 @@ def read_input():
             temp = float(st.text_input('Initial temp. (C):', 25))
             pres = float(st.text_input('Initial pressure (bar):', 150.))
             c1,c2 = st.columns(2)
-
-        
+      
             with c2:
                 btc_input['sigma'] = float( st.text_input('Flow stress (MPa):',519))
                 btc_input['Dt'] = float( st.text_input('Wall thickness (mm):',12))
@@ -118,7 +117,6 @@ if __name__ == "__main__":
     ax.set_ylabel("Pressure (Pa)")
     
     col1.pyplot(fig)
-
 
     fig1, ax1 = plt.subplots()
     ax1.plot(ws.T,ws.P,'k',label='Decompression path')
