@@ -47,10 +47,10 @@ def read_input():
         btc_input={} 
 
         with st.form(key='my_form'):
-             submit_button = st.form_submit_button(label='Run calculation')
-             temp = float(st.text_input('Initial temp. (C):', 25))
-             pres = float(st.text_input('Initial pressure (bar):', 150.))
-             c1,c2 = st.beta_columns(2)
+            submit_button = st.form_submit_button(label='Run calculation')
+            temp = float(st.text_input('Initial temp. (C):', 25))
+            pres = float(st.text_input('Initial pressure (bar):', 150.))
+            c1,c2 = st.beta_columns(2)
 
         
             with c2:
