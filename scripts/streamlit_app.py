@@ -72,9 +72,15 @@ def read_input():
     input['fluid'] = 'CO2'
     return input, btc_input
 
-def btc_calc(btc_input, max_pressure):
+def btc_calc(btc_input, P_max/1e6):
     sigma_a = 2 * btc_input['sigma'] / (btc_input['Mt'] * math.pi) * math.acos(math.exp( (-12.5 * math.pi * btc_input['CVN'] * btc_input['E'] * 1000) / ( 24 * btc_input['sigma']**2 * math.sqrt(btc_input['r'] * btc_input['Dt']))))
-    return None
+    P_a = =sigma_a * btc_input['Dt']/btc_input['r']
+    Pd = []
+    Vf = []
+    for P in xrange(P_a, P_max, 0.1):
+        Pd.append(P*1e6)
+        Vf.append(input_btc['C'] * input_btc['sigma'] / math.sqrt(input_btc['CV'])*(P/P_a-1)^(1/6))
+    return Pd, Vf
 
 
 if __name__ == "__main__":
@@ -97,13 +103,14 @@ if __name__ == "__main__":
     
     st.markdown(get_table_download_link(df, file_name), unsafe_allow_html=True)
 
-    btc_calc(btc,input['pressure'])
+    Pd, Vf = btc_calc(btc,input['pressure'])
     
     col1, col2 = st.columns(2)
 
     fig, ax = plt.subplots()
 
-    ax.plot(ws.W, ws.P, 'k', label="Calculated")
+    ax.plot(ws.W, ws.P, 'k', label="Decompression speed")
+    ax.plot(Vf, Pd, 'r', label="Fracture speed")
     ax.legend(loc='best')
     ax.set_xlabel("Decompression wave speed (m/s)")
     ax.set_ylabel("Pressure (Pa)")
