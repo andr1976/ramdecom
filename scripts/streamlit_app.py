@@ -55,14 +55,16 @@ def read_input():
         
             with c2:
                 btc_input['sigma'] = float( st.text_input('Flow stress (MPa):',519))
-                btc_input['E'] = float( st.text_input('Youngs´s modolus (GPa):',210))
                 btc_input['Dt'] = float( st.text_input('Wall thickness (mm):',12))
-                btc_input['r'] = float( st.text_input('Nominal radius (mm):',305))
+                btc_input['E'] = float( st.text_input('Youngs´s modolus (GPa):',210))
+                btc_input['CVN'] = float( st.text_input('Charpy V-notch energy (J):',70))
             with c1:
                 btc_input['Mt'] = float( st.text_input('Folias factor (--):',3.33))
-                btc_input['CV'] = float( st.text_input('Charpy V-notch energy (J/mm2):',0.96))
-                btc_input['CVN'] = float( st.text_input('Charpy V-notch energy (J):',70))
+                btc_input['r'] = float( st.text_input('Nominal radius (mm):',305))
                 btc_input['C'] = float( st.text_input('Backfill concstant (--):',0.379))
+                btc_input['CV'] = float( st.text_input('Charpy V-notch energy (J/mm2):',0.96))
+                
+               
 
 
     input = {}
