@@ -5,7 +5,7 @@
 import streamlit as st
 import math
 import pandas as pd
-from PIL import Image
+#from PIL import Image
 import base64
 import matplotlib.pyplot as plt 
 from CoolProp import CoolProp as CP
