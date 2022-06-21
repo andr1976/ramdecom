@@ -11,7 +11,7 @@ from CoolProp import CoolProp as CP
 import numpy as np
 
 try:
-    from ramdecom import wavespeed
+    import wavespeed
 except:
     import sys
     import os
