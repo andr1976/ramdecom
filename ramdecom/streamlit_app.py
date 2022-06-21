@@ -55,11 +55,10 @@ def read_input():
 if __name__ == "__main__":
     st.set_page_config(layout='wide')
 
-    ws = WaveSpeed(input)
-    ws.run()
+    ws = wavespeed.WaveSpeed(input)
 
     with st.spinner('Calculating, please wait....'):
-        hdown.run(disable_pbar=True) 
+        ws.run()
 
     st.title('Pure CO2 pipeline decompression wavespeed')
     st.subheader(r'https://github.com/andr1976/RAMDECOM')
