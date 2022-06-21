@@ -75,7 +75,7 @@ def read_input():
 def btc_calc(btc_input, P_max):
     P_max = P_max/1e6
     sigma_a = 2 * btc_input['sigma'] / (btc_input['Mt'] * math.pi) * math.acos(math.exp( (-12.5 * math.pi * btc_input['CVN'] * btc_input['E'] * 1000) / ( 24 * btc_input['sigma']**2 * math.sqrt(btc_input['r'] * btc_input['Dt']))))
-    P_a = =sigma_a * btc_input['Dt']/btc_input['r']
+    P_a = sigma_a * btc_input['Dt']/btc_input['r']
     Pd = []
     Vf = []
     for P in xrange(P_a, P_max, 0.1):
