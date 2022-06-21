@@ -32,7 +32,7 @@ def get_table_download_link(df, filename):
 def read_input():
     sideb = st.sidebar
 
-    with sideb:
+    #with sideb:
         #try:
         #    image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "docs", "img", "Sketch.png")
         #     icon = Image.open(image_path)
