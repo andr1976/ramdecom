@@ -4,12 +4,10 @@ name: Python application
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [ main ]
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ main ]
 
-permissions:
-  contents: read
 
 jobs:
   build:
@@ -25,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest coverage black Cython
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Code formatting with Black
       run: |
