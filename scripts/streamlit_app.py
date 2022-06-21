@@ -3,6 +3,7 @@
 # Published under an MIT license
 
 import streamlit as st
+import math
 import pandas as pd
 from PIL import Image
 import base64
@@ -43,23 +44,43 @@ def read_input():
         #     st.image(icon, use_column_width=True, caption="HydDown")
         # except:
         #     pass
+        btc_input={} 
 
         with st.form(key='my_form'):
              submit_button = st.form_submit_button(label='Run calculation')
              temp = float(st.text_input('Initial temp. (C):', 25))
              pres = float(st.text_input('Initial pressure (bar):', 150.))
+             c1,c2 = st.beta_columns(2)
+
         
+            with c2:
+                btc_input['sigma'] = float( st.text_input('Flow stress (MPa):',519))
+                btc_input['E'] = float( st.text_input('Youngs´s modolus (GPa):',210))
+                btc_input['Dt'] = float( st.text_input('Wall thichness (mm):',12))
+                btc_input['r'] = float( st.text_input('Nominal radius (mm):',305))
+            with c1:
+                btc_input['Mt'] = float( st.text_input('Folias factor (--):',3.33))
+                btc_input['CV'] = float( st.text_input('Charpy V-notch energy (J/mm2):',0.96))
+                btc_input['CVN'] = float( st.text_input('Charpy V-notch energy (J):',70))
+                btc_input['C'] = float( st.text_input('Backfill concstant (--):',0.379))
+
+
     input = {}
     input['temperature'] = 273.15 + temp
     input['pressure'] = pres * 1e5
     input['eos'] = 'HEOS'
     input['fluid'] = 'CO2'
-    return input
+    return input, btc_input
+
+def btc_calc(btc_input, max_pressure):
+    sigma_a = 2 * btc_input['sigma']/(btc_input['Mt'] * math.pi *  math.acos(math.exp( (-12.5*math.pi * btc_input['CVN'] * btc_input['E'] * 1000) / ( 24 * btc_input['sigma']**2 * math.sqrt(btc_input['r'] * btc_input['Dt']))))
+    pass
+
 
 if __name__ == "__main__":
     st.set_page_config(layout='wide')
 
-    input = read_input()
+    input, btc = read_input()
     ws = wavespeed.WaveSpeed(input)
 
     with st.spinner('Calculating, please wait....'):
@@ -76,6 +97,8 @@ if __name__ == "__main__":
     
     st.markdown(get_table_download_link(df, file_name), unsafe_allow_html=True)
 
+    btc_calc(btc,input['pressure'])
+    
     col1, col2 = st.columns(2)
 
     fig, ax = plt.subplots()
