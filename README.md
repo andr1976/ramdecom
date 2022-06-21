@@ -1,7 +1,7 @@
 [![Python application](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml/badge.svg)](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml)
 
 # RAMDECOM
-Calculation routine to calculate the decompression wave speed for pipeline design to ensure adequate pipe tichness and/or Charpy-V hardness so a running fracture can be arrested. The program is mainly targetted for CO<sub>2</sub>, but any fluid can be modelled. 
+Calculation routine to calculate the decompression wave speed for pipeline design to ensure adequate pipe tickness and/or Charpy-V hardness so a running fracture can be arrested. The program is mainly targetted for CO<sub>2</sub>, but any fluid can be modelled. 
 
 This code is developed by Anders Andreasen and is open source and published under an [MIT license](https://gitlab.rambollgrp.com/anra/ramdecom/-/blob/main/LICENSE) . For pure fluids calculations can be made using open source tools only. However, if calculations shall be made for mixtures a [REFPROP](https://www.nist.gov/srd/refprop) license and installation is required.  
 
