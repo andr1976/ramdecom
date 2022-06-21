@@ -44,16 +44,13 @@ def read_input():
         #     submit_button = st.form_submit_button(label='Run calculation')
         #     temp = float(st.text_input('Initial temp. (C):', 25))
         #     pres = float(st.text_input('Initial pressure (bar):', 50.))
-
-            
-
+        
     input = {}
     input['temperature'] = 273.15 + temp
     input['pressure'] = pres * 1e5
     input['eos'] = 'HEOS'
     input['fluid'] = 'CO2'
     return input 
-    
 
 if __name__ == "__main__":
     st.set_page_config(layout='wide')
