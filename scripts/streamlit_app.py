@@ -61,12 +61,9 @@ def read_input():
             with c1:
                 btc_input['Mt'] = float( st.text_input('Folias factor (--):',3.33))
                 btc_input['r'] = float( st.text_input('Nominal radius (mm):',305))
-                btc_input['C'] = float( st.text_input('Backfill concstant (--):',0.379))
                 btc_input['CV'] = float( st.text_input('Charpy V-notch energy (J/mm2):',0.96))
+                btc_input['C'] = float( st.text_input('Backfill concstant (--):',0.379))
                 
-               
-
-
     input = {}
     input['temperature'] = 273.15 + temp
     input['pressure'] = pres * 1e5
@@ -101,7 +98,7 @@ if __name__ == "__main__":
     st.subheader(r'https://github.com/andr1976/ramdecom')
     my_expander = st.expander("Description")
 
-    my_expander.write('Calculation of decompression wavespeed using the CoolProp library. Results to be used in combination with e.g. the Battelle two-curve method.')
+    my_expander.write('Calculation of decompression wavespeed using the CoolProp library. Results to be used in combination with e.g. the Battelle two-curve method. See https://pubs.acs.org/doi/10.1021/acsomega.1c01360')
 
     df = ws.get_dataframe()
     file_name = st.text_input('Filename for saving data:', 'saved_data') 
