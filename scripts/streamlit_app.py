@@ -78,7 +78,7 @@ def btc_calc(btc_input, P_max):
     P_a = sigma_a * btc_input['Dt']/btc_input['r']
     Pd = []
     Vf = []
-    Pd = np.linspace(P_a, P_max, int((P_a - P_max)/0.1))
+    Pd = np.linspace(P_a, P_max, int((P_max - P_a)/0.1))
     Vf = np.zeros(len(Pd))
     for i in range(len(Pd)):
         
