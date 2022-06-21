@@ -55,6 +55,7 @@ def read_input():
 if __name__ == "__main__":
     st.set_page_config(layout='wide')
 
+    input = read_input()
     ws = wavespeed.WaveSpeed(input)
 
     with st.spinner('Calculating, please wait....'):
