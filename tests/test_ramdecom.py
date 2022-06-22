@@ -36,8 +36,8 @@ def test_pure_run_refprop():
     input['pressure'] = 145.61e5
     input['eos'] = 'REFPROP'
     input['fluid'] = 'CO2'
-    ws = wavespeed.WaveSpeed(input)
     try:
+        ws = wavespeed.WaveSpeed(input)
         ws.run()
         ws.plot_decom(filename=os.devnull)
         ws.plot_envelope(filename=os.devnull)
@@ -53,8 +53,8 @@ def test_mixture_run():
     input['pressure'] = 145.61e5
     input['eos'] = 'REFPROP'
     input['fluid'] = 'CO2[0.9667]&O2[0.0333]'
-    ws = wavespeed.WaveSpeed(input)
     try:
+        ws = wavespeed.WaveSpeed(input)
         ws.run()
         ws.plot_decom(filename=os.devnull)
         ws.plot_envelope(filename=os.devnull)
@@ -73,8 +73,8 @@ def test_mixture_run_PR():
     input['refprop_option'] = 'PR'
     input['pressure_step'] = 2e5
     input['extrapolate'] = True
-    ws = wavespeed.WaveSpeed(input)
     try:
+        ws = wavespeed.WaveSpeed(input)
         ws.run()
         ws.plot_decom(filename=os.devnull)
         ws.plot_envelope(filename=os.devnull)
@@ -83,7 +83,7 @@ def test_mixture_run_PR():
         assert ws.rho_mass[-1] == 323.03722458518354
     except: 
         pass
-    
+
 def test_input_validation():
     input = {}
     input['temperature'] = 'a'
