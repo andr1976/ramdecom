@@ -2,7 +2,7 @@
 [![Python application](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml/badge.svg)](https://github.com/andr1976/ramdecom/actions/workflows/python_app.yml)
 ![license](https://img.shields.io/github/license/andr1976/ramdecom)
  [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/andr1976/ramdecom/main/scripts/streamlit_app.py)
- [![codecov](https://codecov.io/gh/andr1976/HydDown/branch/main/graph/badge.svg)](https://codecov.io/gh/andr1976/HydDown)
+ [![codecov](https://codecov.io/gh/andr1976/ramdecom/branch/main/graph/badge.svg)](https://codecov.io/gh/andr1976/HydDown)
 
 
 # RAMDECOM
