@@ -8,7 +8,7 @@
 # RAMDECOM
 Calculation routine to calculate the decompression wave speed for pipeline design to ensure adequate pipe thickness and/or Charpy-V hardness so a running fracture can be arrested. The program is mainly targeted for CO<sub>2</sub>, but almost any fluid can be modelled. 
 
-This code is developed by Anders Andreasen and is open source and published under an [MIT license](https://gitlab.rambollgrp.com/anra/ramdecom/-/blob/main/LICENSE) . For pure fluids, calculations can be made using open source tools only. However, if calculations shall be made for mixtures a [REFPROP](https://www.nist.gov/srd/refprop) license and installation is required.  
+This code is developed by Anders Andreasen and is open source and published under an [MIT license](https://gitlab.rambollgrp.com/anra/ramdecom/-/blob/main/LICENSE) . For pure fluids, calculations can be made using open source tools only ([CoolProp](www.coolprop.org)). However, if calculations shall be made for mixtures a [REFPROP](https://www.nist.gov/srd/refprop) license and installation is required.  
 
 ## Installation
 The code is still under heavy development and official releases and pip/conda packages have not been prepared yet. Installation is done by cloning the code to a local directory and running 
@@ -96,9 +96,13 @@ ramdecom\paper\
 Further some relevant references for further reading: 
 
 [1] http://pubs.acs.org/doi/abs/10.1021/ie4033999
-[2] https://pubs.acs.org/doi/10.1021/acsomega.1c01360
-[3] https://doi.org/10.18434/T4/1502528
-[4] https://doi.org/10.1016/j.psep.2018.08.034
-[5] https://doi.org/10.1115/1.4031941 
-[6] https://doi.org/10.1115/1.4034016 
 
+[2] https://pubs.acs.org/doi/10.1021/acsomega.1c01360
+
+[3] https://doi.org/10.18434/T4/1502528
+
+[4] https://doi.org/10.1016/j.psep.2018.08.034
+
+[5] https://doi.org/10.1115/1.4031941 
+
+[6] https://doi.org/10.1115/1.4034016 
