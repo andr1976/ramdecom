@@ -42,8 +42,8 @@ def read_input():
             image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "paper", "bilder", "logo.png")
             icon = Image.open(image_path)
             st.image(icon, use_column_width=True, caption="RAMDECOM")
-         except:
-             pass
+        except:
+            pass
         btc_input={} 
 
         with st.form(key='my_form'):
