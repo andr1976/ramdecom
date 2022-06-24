@@ -41,7 +41,7 @@ def read_input():
         #image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "paper", "bilder", "ramdecom_logo.png")
         #icon = Image.open(image_path)
         path = 'https://raw.githubusercontent.com/andr1976/ramdecom/main/paper/Bilder/ramdecom_logo.png'
-        image(path, use_column_width=True, caption="RAMDECOM")
+        st.image(path, use_column_width=True, caption="RAMDECOM")
         btc_input={} 
 
         with st.form(key='my_form'):
