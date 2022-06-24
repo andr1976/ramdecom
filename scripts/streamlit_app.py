@@ -16,7 +16,7 @@ try:
 except:
     import sys
     import os
-    #ramdecom_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "ramdecom")
+    
     ramdecom_path = os.path.join(os.path.abspath(os.getcwd()), "..", "ramdecom")
     sys.path.append(os.path.abspath(ramdecom_path))
     from ramdecom import wavespeed
@@ -59,7 +59,7 @@ def read_input():
                 btc_input['Mt'] = float( st.text_input('Folias factor (--):',3.33))
                 btc_input['r'] = float( st.text_input('Nominal radius (mm):',305))
                 btc_input['CV'] = float( st.text_input('Charpy V-notch energy (J/mm2):',0.96))
-                btc_input['C'] = float( st.text_input('Backfill concstant (--):',0.379))
+                btc_input['C'] = float( st.text_input('Backfill constant (--):',0.379))
                 
     input = {}
     input['temperature'] = 273.15 + temp
