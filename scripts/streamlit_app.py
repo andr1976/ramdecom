@@ -38,9 +38,10 @@ def read_input():
     sideb = st.sidebar
 
     with sideb:
-        image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "paper", "bilder", "logo.png")
-        icon = Image.open(image_path)
-        image(icon, use_column_width=True, caption="RAMDECOM")
+        #image_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "paper", "bilder", "ramdecom_logo.png")
+        #icon = Image.open(image_path)
+        path = 'https://raw.githubusercontent.com/andr1976/ramdecom/main/paper/Bilder/ramdecom_logo.png'
+        image(path, use_column_width=True, caption="RAMDECOM")
         btc_input={} 
 
         with st.form(key='my_form'):
