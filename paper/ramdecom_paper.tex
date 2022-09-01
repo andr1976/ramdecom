@@ -45,7 +45,7 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\papertitle}{An open source tool for calculating \\ CO$_2$ pipeline decompression wave speed}
+\newcommand{\papertitle}{An Open Source Tool for Calculating \\ CO$_2$ Pipeline Decompression Wave Speed}
 \newcommand{\shortpapertitle}{Open source decompression waves speed}
 \newcommand{\mainauthors}{~Andreasen~ {\itshape et al.~}} % for header  
 \newcommand{\authors}{Anders Andreasen\textsuperscript{1*}, Leandro-Henrique Sousa\textsuperscript{2}, Geir Agustsson\textsuperscript{2}}
@@ -100,7 +100,7 @@ Increased focus on carbon dioxide emission reduction is bringing to the forefron
 
 Compared to natural gas pipelines a running ductile fracture is of bigger concern for carbon dioxide pipelines. Sometimes the wall thickness dictated by the design pressure is not enough to ensure that a ductile fracture is arrested. In case of a pipeline fracture the fluid decompresses, but when the CO$_2$ reaches saturated conditions the decompression speed drops significantly. In case the decompression speed is lower than the speed of a running fracture, the pipeline itself cannot arrest a running fracture. In order to properly design against a running ductile fracture it is essential to be able to predict the decompression speed.     
 
-By using the Battelle two-curve method (BTCM) \cite{EiberMaxeyW.A.BubenikT.A.AmericanGasAssociation.PipelineResearchCommittee.LinePipeResearchSupervisoryCommittee.1993} the fracture and decompression velocity can be compared by plotting the fracture velocity and decompression velocity as a function of the pressure at the crack tip cf. Fig. \ref{fig:btcm} where the decompression wave speed is calculated for pure CO$_2$. If the fracture velocity exceeds that of the decompression wave speed the fracture will not be arrested by the pipeline material itself. This is illustrated by the red curve illustrating the fracture velocity of a pipeline either with inadequate wall thickness (or toughness). By increasing the wall thickness it can be ensured that the fracture velocity always stays below the decompression velocity and a fracture will be arrested.    
+By using the Battelle two-curve method (BTCM) \cite{EiberMaxeyW.A.BubenikT.A.AmericanGasAssociation.PipelineResearchCommittee.LinePipeResearchSupervisoryCommittee.1993} the fracture and decompression velocity can be compared by plotting the fracture velocity and decompression velocity as a function of the pressure at the crack tip cf. Figure \ref{fig:btcm} where the decompression wave speed is calculated for pure CO$_2$. If the fracture velocity exceeds that of the decompression wave speed the fracture will not be arrested by the pipeline material itself. This is illustrated by the red curve illustrating the fracture velocity of a pipeline either with inadequate wall thickness (or toughness). By increasing the wall thickness it can be ensured that the fracture velocity always stays below the decompression velocity and a fracture will be arrested.    
 
 \begin{figure}[!ht]
 	\centering
@@ -150,9 +150,9 @@ where the differential is evaluated at isentropic conditions. The full calculati
 	\item Calculate density and specific entropy using the equation of state
 	\item For each integration step from the initial pressure the new pressure $P_i$ is set as $P_{i-1}$ + 1e5 Pa and new density is evaluated via an isentropic path.
 	\begin{itemize}
-		\item The speed of sound, $C_i$, is calculated via Eqn. \ref{eqn:sos} assuming a small $\Delta P$ of 100 Pa. 
-		\item $C_i$ is used in Eqn.\ref{eqn:U_num} to calculate the outflow velocity $U_i$
-		\item $W_i$ is calculated using Eqn. \ref{eqn:decompression}
+		\item The speed of sound, $C_i$, is calculated via Equation \ref{eqn:sos} assuming a small $\Delta P$ of 100 Pa. 
+		\item $C_i$ is used in Equation \ref{eqn:U_num} to calculate the outflow velocity $U_i$
+		\item $W_i$ is calculated using Equation \ref{eqn:decompression}
 	\end{itemize}
 \end{itemize}
 
@@ -163,7 +163,7 @@ For all calculations the CoolProp python wrapper is used. When using REFPROP as 
 
 
 \subsection{Experimental}
-In order to compare the presented decompression model with experimental data various relevant experiments have been sourced from the literature. For decompression of pure CO$_2$ experiments made by Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} and Botros \emph{et al.} \cite{Botros_pure}. For CO$_2$ rich mixtures the experiments from Botros \emph{et al.} \cite{Botros_mixture} have been sourced. 
+In order to compare the decompression model presented in the previous section with experimental data various relevant experiments have been sourced from the literature. For decompression of pure CO$_2$ experiments made by Munkejord \emph{et al.} \cite{MUNKEJORD2020118560} and Botros \emph{et al.} \cite{Botros_pure}. For CO$_2$ rich mixtures the experiments from Botros \emph{et al.} \cite{Botros_mixture} have been sourced. 
 
 All the experiments sourced have similar set-up and many things in common. The experiments are performed in a horizontal shock-tube comprised of a number of tubular sections flanged together and equipped with pressure and temperature transducers located along the length of the shock-tube. One end is closed and the other end is equipped with a rupture disc. In order to ensure controllable and uniform temperature the shock-tube is heat-traced and insulated. The facilities have mixing and compression units in order to fill the shock tube with the desired mixture and to the desired initial pressure. For additional information about experimental methods and facility description and further details please refer to the original papers \cite{MUNKEJORD2020118560,Botros_pure}.
 
