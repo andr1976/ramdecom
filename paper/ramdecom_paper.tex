@@ -86,7 +86,7 @@
 \Abstract{%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% fill in abstract here:
-This paper describes a simplified calculation method for pipeline decompression wave speed based on a rigorous equation of state for pure CO$_2$ and mixtures with significant impurities. These calculations are important for the design of pipelines and can be used to estimate the required wall thickness and/or material toughness when combined with the Battelle two curve method, thereby ensuring that a potential running ductile fracture is arrested. The calculations are validated against available literature data and is offered as an open source tool.
+This paper describes a simplified calculation method for pipeline decompression wave speed based on a rigorous equation of state for pure CO$_2$ as well as mixtures with significant impurities. Calculations are performed assuming homogeneous equilibrium for the estimation of the speed of sound in the two-phase region and calculations are performed along and isentropic decompression path. These calculations are important for the design of pipelines and can be used to estimate the required wall thickness and/or material toughness when combined with e.g. the Battelle two curve method, thereby ensuring that a potential running ductile fracture is arrested. The calculations are validated against available literature data and is offered as an open source tool. For pure CO$_2$ at supercritical conditions the model results match experimental results very well, whereas for the dense liquid phase the pressure plateau in the decompression wave speed curve is over-predicted. For CO$_2$ with impurities the model calculations generally match experimental data, except for the experiment with a significant fraction of hydrogen and for the experiment with the highest amount of impurities of approx. 6\%. In these two cases the pressure plateau is under-predicted.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 }
 }
@@ -135,7 +135,7 @@ U_i = U_{i-1} + \frac{P_{i-1}-P_i}{C_i \rho_i}
 
 where the subscript $i$ refers to the current integration step and $i-1$. Properties from the previous step is known, only density and speed of sound needs evaluation at the new step. 
 
-In order calculate the density and the speed of sound, as well as VLE behaviour,  an adequate equation of state is required. In the currect work CoolProp \cite{coolprop} or REFPROP \cite{REFPROP} is used as the thermodynamic back-end. Both tools use Helmholtz energy formulations for fluids modelling both for pure fluids and for mixtures. For pure CO$_2$ the Span-Wagner equation of state is employed \cite{Span2009}, for mixtures the method of Lemmon \cite{Lemmon1999} and Kunz \cite{Kunz2012} is used. For mixtures with CO$_2$ the binary parameters in both CoolProp and REFPROP have been updated with those from EOS-CG \cite{Gernert2016} and later estimations by Herrig \cite{Herrig2018}. 
+In order to calculate the density and the speed of sound, as well as VLE behaviour,  an adequate equation of state is required. In the currect work CoolProp \cite{coolprop} or REFPROP \cite{REFPROP} is used as the thermodynamic back-end. Both tools use Helmholtz energy formulations for fluids modelling both for pure fluids and for mixtures. For pure CO$_2$ the Span-Wagner equation of state is employed \cite{Span2009}, for mixtures the method of Lemmon \cite{Lemmon1999} and Kunz \cite{Kunz2012} is used. For mixtures with CO$_2$ the binary parameters in both CoolProp and REFPROP have been updated with those from EOS-CG \cite{Gernert2016} and later estimations by Herrig \cite{Herrig2018}. 
 
 While the speed of sound is well defined for a single phase fluid, further assumptions are required in order to define it for two-phase / multi-phase. Assuming homogeneous equilibrium the speed of sound can generally be defined as:
 
@@ -146,9 +146,9 @@ C = \sqrt{\left( \frac{dP}{d\rho}\right)_s} \approx \sqrt{\left( \frac{P_{i-1} -
 where the differential is evaluated at isentropic conditions. The full calculational workflow is the following:
 
 \begin{itemize}
-	\item Define initial conditions: $T_0$, $P_0$ and composition (either pure CO$_2$ or mixture with impurities)
+	\item Define initial conditions: Temperature,$T_0$, pressure, $P_0$ and composition (either pure CO$_2$ or mixture with impurities)
 	\item Calculate density and specific entropy using the equation of state
-	\item For each integration step from the initial pressure the new pressure $P_i$ is set as $P_{i-1}$ + 1e5 Pa and new density is evaluated via an isentropic path.
+	\item For each integration step from the initial pressure the new pressure $P_i$ is set as $P_{i-1}$ minus 1e5 Pa and the new density is evaluated via an isentropic path.
 	\begin{itemize}
 		\item The speed of sound, $C_i$, is calculated via Equation \ref{eqn:sos} assuming a small $\Delta P$ of 100 Pa. 
 		\item $C_i$ is used in Equation \ref{eqn:U_num} to calculate the outflow velocity $U_i$
@@ -158,8 +158,7 @@ where the differential is evaluated at isentropic conditions. The full calculati
 
 The calculations are generally continued until the calculated decompression wave speed becomes zero or negative. The evaluation of properties and estimation of speed of sound is performed at specified pressure and entropy (equal to the initial entropy) i.e. a PS-problem. 
 
-For all calculations the CoolProp python wrapper is used. When using REFPROP as backend this is done still via the CoolProp wrapper. The CoolProp backend is applied only for pure CO$_2$, since the two-phase mixtures failed to solve in many cases. REFPROP can be specified both for pure CO$_2$ and for mixtures. This work is a continuation of a previous work \cite{Andreasen2021} with the purpose of building useful engineering tools on top of high quality open source software packages. RAMDECOM is developed entirely in python 3 and also relies on other python packages such as pandas \cite{mckinney-proc-scipy-2010}, matplotlib \cite{Hunter:2007}, and numpy \cite{harris2020array}. 
-
+For all calculations the CoolProp python wrapper is used. When using REFPROP as backend this is done still via the CoolProp wrapper. The CoolProp backend is applied only for pure CO$_2$, since the two-phase mixtures failed to solve in many cases. REFPROP can be specified to be used both for pure CO$_2$ and for mixtures. This work is a continuation of a previous work \cite{Andreasen2021} with the purpose of building useful engineering tools on top of high quality open source software packages. RAMDECOM is developed entirely in python 3 and also relies on other python packages such as pandas \cite{mckinney-proc-scipy-2010}, matplotlib \cite{Hunter:2007}, and numpy \cite{harris2020array}. 
 
 
 \subsection{Experimental}
