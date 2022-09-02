@@ -115,7 +115,7 @@ solving the fluid transport equations \cite{Liu_2017}. On the other end of the s
 \section{Methods}
 
 \subsection{Decompression wave speed}
-In RAMDECOM (RAMboll DECOMpression wave speed) the calculation methodology for the decompression wave speed follows that shown in \cite{GU2018237,Hu2021}. When assuming the decompression wave to be isentropic, in  homogeneous equilibrium and inviscid, the decompression wave speed, $W$, is expressed as:
+In this section the RAMDECOM (RAMboll DECOMpression wave speed) tool is described. In RAMDECOM the calculation methodology for the decompression wave speed follows that shown in \cite{Hu2021,GU2018237}. When assuming the decompression wave to be isentropic, in  homogeneous equilibrium and inviscid, the decompression wave speed, $W$, is expressed as:
 
 \begin{equation}\label{eqn:decompression}
 W = C - U 
@@ -185,7 +185,8 @@ The experimental test conditions for the pure CO$_2$ experiments are summarised 
 \label{tbl:pure_exp}
 \end{table}
 
-\begin{table*}[!h]
+
+\begin{table*}[!t]
 	\renewcommand{\arraystretch}{1.3}
 	\centering
 	\begin{tabularx}{\textwidth}{l|l|l|l|l|l|l|l|l|l|l}\hlinewd{1.2pt}
@@ -199,10 +200,9 @@ The experimental test conditions for the pure CO$_2$ experiments are summarised 
 5	&   144.9	& 35.6 & 96.77  & 0.0025& 		& 		& 		& 3.23	& 	   & 	 \\		
 9	&   154.6	& 35.2 & 96.14  & 		& 		& 		& 3.86 	& 		& 	   &	 \\ \hlinewd{1.2pt}			
 	\end{tabularx}
-	\caption{Experimental initial conditions for decompression experiments with pure CO$_2$ from  Botros \emph{et al.} \cite{Botros_mixture}.}
+	\caption{Experimental initial conditions for decompression experiments with impure CO$_2$ from  Botros \emph{et al.} \cite{Botros_mixture}.}
 	\label{tbl:mix_exp}
 \end{table*}
-
 \section{Results and discussion}
 \subsection{Pure CO$_2$}
 The experiments for pure CO$_2$ summarised in Table \ref{tbl:pure_exp} have all been simulated using the Span \& Wagner equation of state as provided by CoolProp. The isentropic decompression path for all simulated cases is shown in Figure \ref{fig:pure_envelope}.The path is from the inital pressure and temperature in the single phase region to the saturation line. The experimental initial conditions cover both gas, liquid (dense phase / supercritical liquid), and supercritical fluid. Once the decompression state reaches the saturation line, the isentrope follows the saturation line with varying phase split. Calculations have been done with the REFPROP backend as well and identical results were obtained (not shown).  
@@ -256,6 +256,8 @@ Experiments 8 and 32A are very similar and in both cases the discrepancy between
 %\end{figure*} 
 
 \subsection{CO$_2$ mixtures}
+
+
 The calculated decompression curves for the CO$_2$ mixtures in Table \ref{tbl:mix_exp} are shown in Figure \ref{fig:mix_combined} along with the corresponding experimental data from \cite{Botros_mixture}. As seen from the figure experiments no. 4, no. 5, no. 7, and no. 9 are predicted very well by the simple decompression model. The predictions for these experiments are generally in line with both predictions like the one in the present study using the GERG-2008 \cite{Botros_mixture} equation of state as well as predictions made with GASDECOM \cite{Cosham_GASDECOM}.
 
 \begin{figure}[!ht]
@@ -276,8 +278,8 @@ The calculations have been compared with available experiments from the literatu
 
 
 \Acknowledgement
-Language secretary Susanne Tolstrup, Ramboll Energy Transition, Process and Technical Safety, is greatly acknowledged for proofreading the present manuscript.  
-
+Language secretary Susanne Tolstrup, Ramboll Energy Transition, Process and Technical Safety, is greatly acknowledged for proofreading the present manuscript.  The contents of the present paper has been highly motivated by Ramboll's participation in the \href{https://inno-ccus.dk/}{INNO-CCUS partnership}.
+The INNO-CCUS Partnership is established as a mean to secure a significant contribution to achieve the Danish government’s climate goals on CO₂ reduction, through CCUS solutions.
 
 \bibliographystyle{unsrt}
 \bibliography{references}
