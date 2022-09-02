@@ -1,0 +1,180 @@
+\begin{thebibliography}{10}
+
+\bibitem{andreasen_CC}
+{Andreasen, A.}
+\newblock Optimisation of carbon capture from flue gas from a waste-to-energy
+  plant using surrogate modelling and global optimisation.
+\newblock {\em Oil Gas Sci. Technol. - Rev. IFP Energies nouvelles}, 76:55,
+  2021.
+
+\bibitem{Lu2020}
+H.~Lu, X.~Ma, K.~Huang, L.~Fu, and M.~Azimi.
+\newblock {Carbon dioxide transport via pipelines: A systematic review}.
+\newblock {\em Journal of Cleaner Production}, 266:121994, sep 2020.
+
+\bibitem{EiberMaxeyW.A.BubenikT.A.AmericanGasAssociation.PipelineResearchCommittee.LinePipeResearchSupervisoryCommittee.1993}
+R.~J. Eiber, W.~A. Maxey, and T.~A. Bubenik.
+\newblock {\em Final report on fracture control technology for natural gas
+  pipelines}.
+\newblock American Gas Association., Pipeline Research Committee. Line Pipe
+  Research Supervisory Committee, Battelle, Columbus, Ohio, 1993.
+
+\bibitem{Hu2021}
+Q.~Hu, N.~Zhang, Y.~Li, W.~Wang, J.~Zhu, and J.~Gong.
+\newblock A new model for calculation of arrest toughness in the fracture
+  process of the supercritical {CO}$_2$ pipeline.
+\newblock {\em ACS Omega}, 6(26):16804--16815, 2021.
+
+\bibitem{dnv}
+DNV.
+\newblock {\em Design and operation of carbon dioxide pipelines - Recommended
+  practice {DNV-RP-F104}}, {F}ebruary 2021 edition.
+
+\bibitem{Cosham_GASDECOM}
+A.~Cosham, R.~J. Eiber, and E.~B. Clark.
+\newblock {GASDECOM: Carbon Dioxide and Other Components}.
+\newblock volume~2 of {\em 2010 8th International Pipeline Conference}, pages
+  777--794, 09 2010.
+
+\bibitem{Lu2012_EPDECOM}
+C.~Lu, G.~Michal, A.~Elshahomi, A.~Godbole, P.~Venton, K.~K. Botros,
+  L.~Fletcher, and B.~Rothwell.
+\newblock {Investigation of the effects of pipe wall roughness and pipe
+  diameter on the decompression wave speed in natural gas pipelines}.
+\newblock {\em Proceedings of the Biennial International Pipeline Conference,
+  IPC}, 3:315--322, 2012.
+
+\bibitem{Cosham_DECOM}
+A.~Cosham, D.~G. Jones, K.~Armstrong, D.~Allason, and J.~Barnett.
+\newblock {The Decompression Behaviour of Carbon Dioxide in the Dense Phase}.
+\newblock volume 3: Materials and Joining of {\em International Pipeline
+  Conference}, pages 447--464, 09 2012.
+
+\bibitem{Liu_2017}
+B.~Liu, X.~Liu, C.~Lu, A.~Godbole, G.~Michal, and A.~K. Tieu.
+\newblock Multi-phase decompression modeling of {CO$_2$} pipelines.
+\newblock {\em Greenhouse Gases: Science and Technology}, 7(4):665--679, 2017.
+
+\bibitem{Xu2014_CFDDECOM}
+B.~P. Xu, H.~E. Jie, and J.~X. Wen.
+\newblock {A pipeline depressurization model for fast decompression and slow
+  blowdown}.
+\newblock {\em International Journal of Pressure Vessels and Piping},
+  123-124:60--69, nov 2014.
+
+\bibitem{OKE20034591_pipetech_CFD}
+A.~Oke, H.~Mahgerefteh, I.~Economou, and Y.~Rykov.
+\newblock A transient outflow model for pipeline puncture.
+\newblock {\em Chemical Engineering Science}, 58(20):4591--4604, 2003.
+
+\bibitem{ELSHAHOMI201520_CFD}
+A.~Elshahomi, C.~Lu, G.~Michal, X.~Liu, A.~Godbole, and P.~Venton.
+\newblock Decompression wave speed in {CO$_2$} mixtures: {CFD} modelling with
+  the {GERG-2008} equation of state.
+\newblock {\em Applied Energy}, 140:20--32, 2015.
+
+\bibitem{Fang2019}
+Y.~Fang, S.~Poncet, H.~Nesreddine, and Y.~Bartosiewicz.
+\newblock {An open-source density-based solver for two-phase {CO$_2$}
+  compressible flows: Verification and validation}.
+\newblock {\em International Journal of Refrigeration}, 106:526--538, 2019.
+
+\bibitem{GU2018237}
+S.~Gu, Y.~Li, L.~Teng, Q.~Hu, D.~Zhang, X.~Ye, C.~Wang, J.~Wang, and
+  S.~Iglauer.
+\newblock A new model for predicting the decompression behavior of {CO}$_2$
+  mixtures in various phases.
+\newblock {\em Process Safety and Environmental Protection}, 120:237--247,
+  2018.
+
+\bibitem{coolprop}
+I.~H. Bell, J.~Wronski, S.~Quoilin, and V.~Lemort.
+\newblock Pure and pseudo-pure fluid thermophysical property evaluation and the
+  open-source thermophysical property library coolprop.
+\newblock {\em Industrial \& Engineering Chemistry Research}, 53(6):2498--2508,
+  2014.
+
+\bibitem{REFPROP}
+E.~W. Lemmon, I.~H. Bell, M.~L. Huber, and M.~O. McLinden.
+\newblock {NIST Standard Reference Database 23: Reference Fluid Thermodynamic
+  and Transport Properties-REFPROP, Version 10.0, National Institute of
+  Standards and Technology}, 2018.
+
+\bibitem{Span2009}
+R.~Span and W.~Wagner.
+\newblock {A New Equation of State for Carbon Dioxide Covering the Fluid Region
+  from the Triple‐Point Temperature to 1100 K at Pressures up to 800 MPa}.
+\newblock {\em Journal of Physical and Chemical Reference Data}, 25(6):1509,
+  oct 2009.
+
+\bibitem{Lemmon1999}
+E.~W. Lemmon and R.~T. Jacobsen.
+\newblock {A Generalized Model for the Thermodynamic Properties of Mixtures}.
+\newblock {\em International Journal of Thermophysics 1999 20:3},
+  20(3):825--835, 1999.
+
+\bibitem{Kunz2012}
+O.~Kunz and W.~Wagner.
+\newblock {The GERG-2008 Wide-Range Equation of State for Natural Gases and
+  Other Mixtures: An Expansion of GERG-2004}.
+\newblock {\em Journal of Chemical and Engineering Data}, 57(11):3032--3091,
+  nov 2012.
+
+\bibitem{Gernert2016}
+J.~Gernert and R.~Span.
+\newblock {EOS–CG: A Helmholtz energy mixture model for humid gases and CCS
+  mixtures}.
+\newblock {\em The Journal of Chemical Thermodynamics}, 93:274--293, feb 2016.
+
+\bibitem{Herrig2018}
+S.~Herrig.
+\newblock {\em {New Helmholtz-Energy Equations of State for Pure Fluids and
+  CCS-Relevant Mixtures}}.
+\newblock PhD thesis, Ruhr Universit{\"{a}}t Bochum, Bochum, 2018.
+
+\bibitem{Andreasen2021}
+A.~Andreasen.
+\newblock {HydDown: A Python package for calculation of hydrogen (or other gas)
+  pressure vessel filling and discharge}.
+\newblock {\em Journal of Open Source Software}, 6(66):3695, oct 2021.
+
+\bibitem{mckinney-proc-scipy-2010}
+W.~McKinney.
+\newblock Data structures for statistical computing in python.
+\newblock In S.~van~der Walt and J.~Millman, editors, {\em Proceedings of the
+  9th Python in Science Conference}, pages 51 -- 56, 2010.
+
+\bibitem{Hunter:2007}
+J.~D. Hunter.
+\newblock Matplotlib: A 2d graphics environment.
+\newblock {\em Computing In Science \& Engineering}, 9(3):90--95, 2007.
+
+\bibitem{harris2020array}
+C.~R. Harris, K.~J. Millman, S.~J. van~der Walt, R.~Gommers, P.~Virtanen,
+  D.~Cournapeau, E.~Wieser, J.~Taylor, S.~Berg, N.~J. Smith, R.~Kern, M.~Picus,
+  S.~Hoyer, M.~H. van Kerkwijk, M.~Brett, A.~Haldane, J.~Fern{'{a}}ndez del
+  R{'{\i}}o, M.~Wiebe, P.~Peterson, P.~G{'{e}}rard-Marchant, K.~Sheppard,
+  T.~Reddy, W.~Weckesser, H.~Abbasi, C.~Gohlke, and T.~E. Oliphant.
+\newblock Array programming with {NumPy}.
+\newblock {\em Nature}, 585(7825):357--362, 2020.
+
+\bibitem{MUNKEJORD2020118560}
+S.~T. Munkejord, A.~Austegard, H.~Deng, M.~Hammer, H.G.~J. Stang, and S.~W.
+  Løvseth.
+\newblock Depressurization of {CO}$_2$ in a pipe: High-resolution pressure and
+  temperature data and comparison with model predictions.
+\newblock {\em Energy}, 211:118560, 2020.
+
+\bibitem{Botros_pure}
+K.~K. Botros, J.~Geerligs, B.~Rothwell, and T.~Robinson.
+\newblock {Measurements of Decompression Wave Speed in Pure Carbon Dioxide and
+  Comparison With Predictions by Equation of State}.
+\newblock {\em Journal of Pressure Vessel Technology}, 138(3), 12 2015.
+
+\bibitem{Botros_mixture}
+K.~K. Botros, J.~Geerligs, B.~Rothwell, and T.~Robinson.
+\newblock {Measurements of Decompression Wave Speed in Binary Mixtures of
+  Carbon Dioxide and Impurities}.
+\newblock {\em Journal of Pressure Vessel Technology}, 139(2), 09 2016.
+
+\end{thebibliography}

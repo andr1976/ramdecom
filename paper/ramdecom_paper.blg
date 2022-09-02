@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: ramdecom_paper.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+Warning--empty booktitle in Cosham_GASDECOM
+Warning--empty booktitle in Cosham_DECOM
+You've used 28 entries,
+            1791 wiz_defined-function locations,
+            655 strings with 10124 characters,
+and the built_in function-call counts, 7192 in all, are:
+= -- 579
+> -- 427
+< -- 5
++ -- 153
+- -- 125
+* -- 596
+:= -- 1181
+add.period$ -- 82
+call.type$ -- 28
+change.case$ -- 26
+chr.to.int$ -- 0
+cite$ -- 30
+duplicate$ -- 278
+empty$ -- 643
+format.name$ -- 125
+if$ -- 1550
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 26
+newline$ -- 141
+num.names$ -- 29
+pop$ -- 56
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 127
+stack$ -- 0
+substring$ -- 492
+swap$ -- 60
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 62
+width$ -- 30
+write$ -- 305
+(There were 2 warnings)
