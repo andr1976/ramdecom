@@ -21,13 +21,6 @@ pip install -e .
 This way a dynamic link is created in the local site-packages directory. Any changes to the code will be dynamically updated, so no need to run ``` pip install -e ``` every time the code is updated. 
 
 
----
-**NOTE**
-
-This package, or CoolProp to be more precise, runs on python 3.8 and apparently the [CoolProp](http://www.coolprop.org/) pip package has issues with python 3.9. Maybe compiling from source works, but this has not been tested. Hence, it is highly recommended that python 3.8 is used.
-
----
-
 ## Usage
 
 ### Import main class
