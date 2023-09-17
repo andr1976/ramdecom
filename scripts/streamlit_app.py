@@ -117,7 +117,7 @@ if __name__ == "__main__":
     col1.pyplot(fig)
 
     fig1, ax1 = plt.subplots()
-    ax1.plot(ws.T,ws.P,'k',label='Decompression path')
+    ax1.plot(ws.T-273.15,ws.P,'k',label='Decompression path')
 
     pc = ws.asfluid.keyed_output(CP.iP_critical)
     Tc = ws.asfluid.keyed_output(CP.iT_critical)
