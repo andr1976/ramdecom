@@ -117,7 +117,7 @@ if __name__ == "__main__":
     col1.pyplot(fig)
 
     fig1, ax1 = plt.subplots()
-    ax1.plot(ws.T-273.15,ws.P,'k',label='Decompression path')
+    ax1.plot(ws.T,ws.P,'k',label='Decompression path')
 
     pc = ws.asfluid.keyed_output(CP.iP_critical)
     Tc = ws.asfluid.keyed_output(CP.iT_critical)
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     ax1.plot(Ts, ps, '--', color='dimgrey', label='Saturation line')
     ax1.plot(Tc, pc, 'ko', label='Critical point')
     ax1.plot(Tt, pt, linestyle='none', marker='o', color='black', fillstyle='none', label='Triple point')
-    ax1.set_xlabel("Temperature ($^\circ$C)")
+    ax1.set_xlabel("Temperature (K)")
     ax1.set_ylabel("Presseure (Pa)")
     ax1.legend(loc='best')
     col2.pyplot(fig1)
