@@ -14,13 +14,13 @@ matplotlib.rc('axes', linewidth=2.0)
 
 exp = pd.read_csv(r'..\validation\mixture.csv', sep=';')
 input = {}
-input['eos'] = 'REFPROP'
+input['eos'] = 'tcPR'
 #input['refprop_option'] = 'GERG'
 color = ['red', 'blue', 'black', 'green', 'cyan', 'grey'
          ] + ['red', 'blue', 'black', 'green', 'cyan', 'grey']
 
 for index, row in exp.iterrows():
-    if True and index == 3:
+    if True:
         # 1,2,4,5,
         # plt.figure(index)
         input['pressure'] = row['P (bar)'] * 1e5

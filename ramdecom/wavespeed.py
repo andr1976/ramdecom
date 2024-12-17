@@ -33,19 +33,19 @@ def tcpr_enthalpy(tc_pr, T, P, z):
     x, y, beta_g, beta_l, phase = tc_pr.two_phase_tpflash(T, P, z)
 
     if phase == tc_pr.TWOPH:
-        s_l, = tc_pr.enthalpy(T, P, x, tc_pr.LIQPH)
-        s_g, = tc_pr.enthalpy(T, P, y, tc_pr.VAPPH)
-        s = s_g * beta_g + s_l * beta_l
+        h_l, = tc_pr.enthalpy(T, P, x, tc_pr.LIQPH)
+        h_g, = tc_pr.enthalpy(T, P, y, tc_pr.VAPPH)
+        h = h_g * beta_g + h_l * beta_l
     elif phase == tc_pr.LIQPH:
-        s_l, = tc_pr.enthalpy(T, P, z, tc_pr.LIQPH)
-        s = s_l
+        h_l, = tc_pr.enthalpy(T, P, z, tc_pr.LIQPH)
+        h = h_l
     elif phase == tc_pr.VAPPH:
-        s_l, = tc_pr.enthalpy(T, P, z, tc_pr.VAPPH)
+        h_l, = tc_pr.enthalpy(T, P, z, tc_pr.VAPPH)
         s = s_l
     elif phase == tc_pr.SINGLEPH:
-        s_l, = tc_pr.enthalpy(T, P, z, tc_pr.VAPPH)
-        s = s_l
-    return s
+        h_l, = tc_pr.enthalpy(T, P, z, tc_pr.VAPPH)
+        h = h_l
+    return h
 
 
 def tcpr_temperature(tc_pr, P, S, z, Tguess=None):
@@ -106,7 +106,6 @@ def tcpr_density(tc_pr, P, S, z, Tguess=None):
         mw[i] = tc_pr.compmoleweight(i + 1) * 1.0e-3  # g/mol -> kg/mol
 
     mw_z = np.matmul(z, mw)
-    print(mw_z)
     T, x, y, beta_g, beta_l, phase = tc_pr.two_phase_psflash(P,
                                                              z,
                                                              S,
@@ -287,6 +286,7 @@ class WaveSpeed:
         Setting initial entropy for the isentrope, and preparing lists 
         for storing results. 
         """
+
         self.S0 = self.entropy(P=self.P0, T=self.T0)
         if self.eos == 'HEOS' or self.eos == 'REFPROP':
             self.asfluid = CP.AbstractState(self.eos, self.comp)
@@ -517,12 +517,16 @@ class WaveSpeed:
                 Q = 1
             try:
                 T_new = self.temperature_PS(P_new)
-                H_mass = self.enthalpy(P_new, T_new)
+                try:
+                    H_mass = self.enthalpy(P_new, T_new)
+                except:
+                    H_mass = -9999
                 D_mass = self.density(P_new)
-                print("Density", D_mass)
+                #print("Density", D_mass)
 
                 C = self.speed_of_sound(P_new)
             except:
+                raise
                 self.isrun = True
                 break
 
@@ -556,13 +560,16 @@ class WaveSpeed:
 
 
 if __name__ == '__main__':
+    CP.set_config_string(
+        CP.ALTERNATIVE_REFPROP_HMX_BNC_PATH,
+        r'C:\\Program Files (x86)\\REFPROP\\FLUIDS\\HMX_OLD.BNC')
     input = {}
     input['temperature'] = 273.15 + 35.2
     input['pressure'] = 149.3e5
-    input['eos'] = 'REFPROP'
+    input['eos'] = 'tcPR'
     input['fluid'] = 'CO2[0.9677]&H2[0.0323]'
     input['extrapolate'] = True
-    input['refprop_option'] = 'GERG'
+    #input['refprop_option'] = 'GERG'
     ws = WaveSpeed(input)
     ws.run()
 
