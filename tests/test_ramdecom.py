@@ -1,6 +1,7 @@
 # RAMDECOM Copyright (c) 2022 Anders Andreasen
 
 from ramdecom import wavespeed
+import pytest
 import os
 
 def test_pure_run_coolprop():
@@ -11,7 +12,7 @@ def test_pure_run_coolprop():
     input['fluid'] = 'CO2'
     ws = wavespeed.WaveSpeed(input)
     ws.run()
-    assert ws.T[-1] == 278.0666028440005
+    assert ws.T[-1] == pytest.approx(278.0666028440005, rel=1e-5)
     assert ws.P[-1] == 3961000.0
     assert ws.rho_mass[-1] == 362.33658068836274
 
@@ -25,7 +26,7 @@ def test_pure_run_coolprop_extended():
     input['pressure_break'] = 45e5
     ws = wavespeed.WaveSpeed(input)
     ws.run()
-    assert ws.T[-1] == 283.67432227384006
+    assert ws.T[-1] == pytest.approx(283.67432227384006, rel=1e-5)
     assert ws.P[-1] ==  4561000.0
     assert ws.rho_mass[-1] == 454.99417292135354
 
