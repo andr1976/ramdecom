@@ -10,6 +10,22 @@ Calculation routine to calculate the decompression wave speed for pipeline desig
 
 This code is developed by Anders Andreasen and is open source and published under an [MIT license](https://gitlab.rambollgrp.com/anra/ramdecom/-/blob/main/LICENSE) . For pure fluids, calculations can be made using open source tools only ([CoolProp](www.coolprop.org)). However, if calculations shall be made for mixtures a [REFPROP](https://www.nist.gov/srd/refprop) license and installation is required.  
 
+## Background and reference
+The methods implemented in RAMDECOM are described in more detail in an *open access* publication in [Simulation Notes Europe](https://www.sne-journal.org/fileadmin/user_upload_sne/SNE_Issues_OA/SNE_32_4/articles/sne.32.4.10622.tn.OA.pdf). If you use RAMDECOM, please cite this article 
+
+```
+@article{ramdecom,
+  author  = {{Andreasen, A. and Sousa, L-H and Agustsson, G.}},
+  title   = {An Open Source Tool for Calculating CO2 Pipeline Decompression Wave Speed},
+  doi     = {10.11128/sne.32.tn.10622},
+  journal = {Simulation Notes Europe SNE},
+  year    = 2022,
+  volume  = 32,
+  issue = 4,
+  pages   = {187--193}
+}
+```
+
 ## Installation
 The code is still under heavy development and official releases and pip/conda packages have not been prepared yet. Installation is done by cloning the code to a local directory and running 
 
